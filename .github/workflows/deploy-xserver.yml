@@ -1,0 +1,44 @@
+name: Deploy to Xserver
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Upload to Xserver via FTPS
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          REMOTE_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" <<EOF
+          set ftp:ssl-force true
+          set ftp:ssl-protect-data true
+          set ssl:verify-certificate no
+          mkdir -p "$REMOTE_DIR"
+          mkdir -p "$REMOTE_DIR/log"
+          mkdir -p "$REMOTE_DIR/log/db"
+          mkdir -p "$REMOTE_DIR/up"
+          mirror -R --verbose \
+            --exclude-glob .git* \
+            --exclude .github \
+            --exclude log/tmp.log \
+            --exclude log/count.log \
+            --exclude log/db/kiji.db \
+            --exclude up \
+            ./ "$REMOTE_DIR"
+          bye
+          EOF
