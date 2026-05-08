@@ -1,11 +1,8 @@
-<?php header("Content-Type: text/html;charset=Shift_JIS");?>
+<?php header("Content-Type: text/html");?>
 <?php
-mb_language("Japanese");
-mb_regex_encoding("SJIS");
-mb_internal_encoding("SJIS");
 
 ###########################################################################
-# ƒXƒŒƒbƒhŒf¦”Â1_PHP”Å ŠÂ‹«İ’è
+# ï¿½Xï¿½ï¿½ï¿½bï¿½hï¿½fï¿½ï¿½ï¿½ï¿½1_PHPï¿½ï¿½ ï¿½Â‹ï¿½ï¿½İ’ï¿½
 # Ver3.0 PHP8.4
 # https://cgi-garage.com/
 ###########################################################################
@@ -30,11 +27,11 @@ if($mainset){
 }
 ###########################
 $print = "<TABLE border=1>\n"
-	   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@‚PA‰Šúİ’è</TD>\n"
-	   . "<TD><INPUT type=submit name=mainset value=‰Šúİ’è‚Ö@Ë></TD>\n"
+	   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½Pï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½</TD>\n"
+	   . "<TD><INPUT type=submit name=mainset value=ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½Ö@ï¿½ï¿½></TD>\n"
 	   . "<TD align=center rowspan=14><A href=\"javascript:help('admin')\"><B>HELP</B></A></TD>\n</TR>\n"
-	   . "<TR><TD bgcolor=#cccccc>Ÿ@‚QAƒƒOƒtƒ@ƒCƒ‹ˆê——</TD>\n"
-	   . "<TD><INPUT type=submit name=itiran value='ƒƒOƒtƒ@ƒCƒ‹ˆê——‚Ö@Ë'></TD>\n</TR>"
+	   . "<TR><TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½Qï¿½Aï¿½ï¿½ï¿½Oï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ê——</TD>\n"
+	   . "<TD><INPUT type=submit name=itiran value='ï¿½ï¿½ï¿½Oï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ê——ï¿½Ö@ï¿½ï¿½'></TD>\n</TR>"
 	   . "</TABLE>\n";
 
 $script = "<SCRIPT language='JavaScript'>\n<!--\n";
@@ -42,7 +39,7 @@ $script .= "function help(str){\n";
 $script .= "\tif(str == 'admin'){	window.open('./help/admin.html','','width=400,height=300,scrollbars');}\n";
 $script .= "}\n//-->\n</SCRIPT>";
 
-funcprint($script,'ƒXƒŒƒbƒhŒf¦”Â1_PHP”Å@ŠÂ‹«İ’è',$print);
+funcprint($script,'ï¿½Xï¿½ï¿½ï¿½bï¿½hï¿½fï¿½ï¿½ï¿½ï¿½1_PHPï¿½Å@ï¿½Â‹ï¿½ï¿½İ’ï¿½',$print);
 ################################################
 function itiran(){
 	global $set,$chstr,$backtime;
@@ -54,11 +51,11 @@ function itiran(){
 	$suuti = postget('suuti');
 	$dbase = setread2($set['logfilename']);
 	$list = array();
-	$koumoku = array('“Še“ú','ƒzƒXƒg–¼','–¼‘O','ƒ^ƒCƒgƒ‹','ƒ[ƒ‹ƒAƒhƒŒƒX','ƒz[ƒ€ƒy[ƒWƒAƒhƒŒƒX','ƒRƒƒ“ƒg');
+	$koumoku = array('ï¿½ï¿½ï¿½eï¿½ï¿½','ï¿½zï¿½Xï¿½gï¿½ï¿½','ï¿½ï¿½ï¿½O','ï¿½^ï¿½Cï¿½gï¿½ï¿½','ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½hï¿½ï¿½ï¿½X','ï¿½zï¿½[ï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½Aï¿½hï¿½ï¿½ï¿½X','ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½g');
 
 	if($sort){
 		if($sortchange == ""){
-			errorprint("“ü—ÍƒGƒ‰[","¸‡‚©~‡‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B");
+			errorprint("ï¿½ï¿½ï¿½ÍƒGï¿½ï¿½ï¿½[","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B");
 		}
 		$final = "";
 		$dbase2 = array();
@@ -177,7 +174,7 @@ function itiran(){
 		$end = $hyouji;
 	}
 
-	$print = "<P>œ@ƒƒOŒŸõ</P>œ@€–Úw’è@<select name=\"category\">\n";
+	$print = "<P>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½</P>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½Úwï¿½ï¿½@<select name=\"category\">\n";
 	$frag = 0;
 	$count = 0;
 	foreach ($koumoku as $i){
@@ -193,13 +190,13 @@ function itiran(){
 	if($frag == 0){
 		$print .= " selected";
 	}
-	$print .= ">–³‚µ</OPTION>\n"
+	$print .= ">ï¿½ï¿½ï¿½ï¿½</OPTION>\n"
 			. "</SELECT>\n"
-			. "@ŒŸõ•¶š—ñ<input type=text name=searchstr value=\"$searchstr2\"><BR>"
-			. "<INPUT TYPE=text name=hyouji value=\"$hyouji\" size=\"4\">Œ‚¸‚Â"
-			. "<input type=submit name=itiran value=\"•\¦\"><BR><BR>\n"
+			. "ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<input type=text name=searchstr value=\"$searchstr2\"><BR>"
+			. "<INPUT TYPE=text name=hyouji value=\"$hyouji\" size=\"4\">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+			. "<input type=submit name=itiran value=\"ï¿½\ï¿½ï¿½\"><BR><BR>\n"
 			. "<HR>\n"
-			. "<P>œ@ƒf[ƒ^‚Ìƒ\[ƒg</P>œ@€–Úw’è@<select name=\"sortcategory\">\n";
+			. "<P>ï¿½ï¿½ï¿½@ï¿½fï¿½[ï¿½^ï¿½Ìƒ\ï¿½[ï¿½g</P>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½Úwï¿½ï¿½@<select name=\"sortcategory\">\n";
 	$frag = 0;
 	$count = 0;
 	foreach ($koumoku as $i){
@@ -215,23 +212,23 @@ function itiran(){
 	if($frag == 0){
 		$print .= " selected";
 	}
-	$print .= ">–³‚µ</OPTION>\n</SELECT>\n@"
+	$print .= ">ï¿½ï¿½ï¿½ï¿½</OPTION>\n</SELECT>\nï¿½@"
 			. "<input type=radio name=sortchange value=\"up\"";
 	if($sortchange == "up"){
 		$print .= " checked";
 	}
-	$print .= ">¸‡ "
+	$print .= ">ï¿½ï¿½ï¿½ï¿½ "
 			. "<INPUT TYPE=radio name=sortchange value=\"down\"";
 	if($sortchange == "down"){
 		$print .= " checked";
 	}
-	$print .= ">~‡@"
+	$print .= ">ï¿½~ï¿½ï¿½ï¿½@"
 			. "<input type=checkbox name=suuti value=\"1\"";
 	if($suuti == "1"){
 		$print .= " checked";
 	}
-	$print .= ">”’lŒ`®@"
-			. "<input type=submit name=sort value=\"ƒ\[ƒg‚·‚é\"><BR><BR>\n"
+	$print .= ">ï¿½ï¿½ï¿½lï¿½`ï¿½ï¿½ï¿½@"
+			. "<input type=submit name=sort value=\"ï¿½\ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½\"><BR><BR>\n"
 			. "<HR>\n"
 			. "[ <A href=\"javascript:help('itiran2')\"><B>HELP</B></A> ]<BR><BR>\n"
 			. "<TABLE border=1>\n";
@@ -239,8 +236,8 @@ function itiran(){
 	$hyoujicount = 0;
 	$kcount = "0";
 	$sobi = array();
-	$print .= "<TR><TD bgcolor=#cccccc nowrap align=center>DATA<BR>”Ô†</TD>\n"
-			. "<TD bgcolor=#cccccc nowrap align=center>íœ</TD>\n";
+	$print .= "<TR><TD bgcolor=#cccccc nowrap align=center>DATA<BR>ï¿½Ôï¿½</TD>\n"
+			. "<TD bgcolor=#cccccc nowrap align=center>ï¿½íœ</TD>\n";
 	foreach ($koumoku as $p){
 		$print .= "<TD bgcolor=#cccccc nowrap>$p</TD>\n";
 		$kcount++;
@@ -278,22 +275,22 @@ function itiran(){
 	$count--;
 	if($hyoujicount == 0){
 		$listcount = $kcount + 2;
-		$print .= "<TR><TD colspan=$listcount align=center><B>ŠY“–‚·‚éƒf[ƒ^‚Í‘¶İ‚µ‚Ü‚¹‚ñ</B></TD></TR>\n";
+		$print .= "<TR><TD colspan=$listcount align=center><B>ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½Í‘ï¿½ï¿½İ‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½</B></TD></TR>\n";
 	}
 	$print .= "<TR><TD></TD>\n"
 			. "<TD><A href=\"javascript:help('itiran')\"><B>HELP</B></A></TD>\n"
-			. "<TD colspan='$kcount' align=center><INPUT type=submit name=delbtn value='‘I‘ğ‚µ‚½ƒf[ƒ^‚ğíœ'></TD></TR>\n"
+			. "<TD colspan='$kcount' align=center><INPUT type=submit name=delbtn value='ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½íœ'></TD></TR>\n"
 			. "</TABLE>\n"
 			. "<input type=hidden name=itiran value=aaa>";
 	$endnum = $end;
 	if($category != ""){
-		$print .= "<B>".$koumoku[$category]."</B> ‚É ";
+		$print .= "<B>".$koumoku[$category]."</B> ï¿½ï¿½ ";
 	} if($searchstr != ""){
-		$print .= "<B>$searchstr2</B> ‚Ì•¶š‚ªŒ©‚Â‚©‚Á‚½ƒf[ƒ^ ";
+		$print .= "<B>$searchstr2</B> ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ ";
 	} if($end > $hyoujicount){
 		$endnum = $hyoujicount;
 	}
-	$print .= "<B>$hyoujicount</B> Œ’† <B>$start</B> Œ ` <B>$endnum</B>Œ•\¦<BR><BR>\n";
+	$print .= "<B>$hyoujicount</B> ï¿½ï¿½ï¿½ï¿½ <B>$start</B> ï¿½ï¿½ ï¿½` <B>$endnum</B>ï¿½ï¿½ï¿½\ï¿½ï¿½<BR><BR>\n";
 
 	$print .= linkstr($hyoujicount,$hyouji,$start,$end,$category,$searchstr);
 
@@ -303,15 +300,15 @@ function itiran(){
 	$script .= "\tif(str == 'itiran2'){	window.open('./help/itiran2.html','','width=400,height=400,scrollbars');}\n";
 	$script .= "}\n//-->\n</SCRIPT>";
 
-	funcprint($script,'ƒXƒŒƒbƒhŒf¦”Â1_PHP”Å@ƒƒOƒtƒ@ƒCƒ‹ˆê——',$print);
+	funcprint($script,'ï¿½Xï¿½ï¿½ï¿½bï¿½hï¿½fï¿½ï¿½ï¿½ï¿½1_PHPï¿½Å@ï¿½ï¿½ï¿½Oï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ê——',$print);
 }
 
 function linkstr($hyoujicount,$hyouji,$start,$end,$category,$searchstr) {
 	global $set;
 	$frag = "0";
 	if($set['pattern'] == "1"){
-		$mae = "y ";
-		$usiro = " z";
+		$mae = "ï¿½y ";
+		$usiro = " ï¿½z";
 	} elseif($set['pattern'] == "2"){
 		$mae = "";
 		$usiro = "";
@@ -357,16 +354,16 @@ function linkstr($hyoujicount,$hyouji,$start,$end,$category,$searchstr) {
 				$code = strtocode($searchstr);
 				$befnum .= "&searchstr=$code";
 			}
-			$befnum .= "\"><B>&lt;&lt;‘O‚Ì".$hyouji."Œ</B></A>@";
+			$befnum .= "\"><B>&lt;&lt;ï¿½Oï¿½ï¿½".$hyouji."ï¿½ï¿½</B></A>ï¿½@";
 		} elseif( $i == ($nownum + 1) && $set['pagechange'] ){
-			$aftnum = "@<A href=\"admin.php?itiran=aaa&start=$startnum&end=$endnum&hyouji=$hyouji";
+			$aftnum = "ï¿½@<A href=\"admin.php?itiran=aaa&start=$startnum&end=$endnum&hyouji=$hyouji";
 			if($category != ""){
 				$aftnum .= "&category=$category";
 			} if($searchstr != ""){
 				$code = strtocode($searchstr);
 				$aftnum .= "&searchstr=$code";
 			}
-			$aftnum .= "\"><B>Ÿ‚Ì".$hyouji."Œ&gt;&gt;</B></A>@";
+			$aftnum .= "\"><B>ï¿½ï¿½ï¿½ï¿½".$hyouji."ï¿½ï¿½&gt;&gt;</B></A>ï¿½@";
 		}
 	}
 	$numstr2 = $befnum.$numstr.$aftnum;
@@ -397,8 +394,8 @@ function mainset(){
 		$hyouji = mb_convert_kana($hyouji,"n");
 		$logcount = mb_convert_kana($logcount,"n");
 		$pagechangecount = mb_convert_kana($pagechangecount,"n");
-		$exhost = preg_replace("/@/"," ",$exhost);
-		$exstr = preg_replace("/@/"," ",$exstr);
+		$exhost = preg_replace("/ï¿½@/"," ",$exhost);
+		$exstr = preg_replace("/ï¿½@/"," ",$exstr);
 
 		$setkey = array('pass','temp','logfilename','hyouji','logcount','exhost','exstr',
 						'erchk','path','pagechange','pagechangecount','pattern');
@@ -411,9 +408,9 @@ function mainset(){
 		}
 
 		if(mb_ereg("[^0-9]",$hyouji)){
-			errorprint('“ü—ÍƒGƒ‰[','ƒy[ƒW‚²‚Æ‚Ì•\¦Œ”‚É•s³‚È•¶š—ñ‚ª“ü—Í‚³‚ê‚Ä‚¢‚Ü‚·B');
+			errorprint('ï¿½ï¿½ï¿½ÍƒGï¿½ï¿½ï¿½[','ï¿½yï¿½[ï¿½Wï¿½ï¿½ï¿½Æ‚Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É•sï¿½ï¿½ï¿½È•ï¿½ï¿½ï¿½ï¿½ñ‚ª“ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B');
 		} if(mb_ereg("[^0-9]",$logcount)){
-			errorprint('“ü—ÍƒGƒ‰[','ƒƒO‚Ì•Û‘¶Œ”‚É•s³‚È•¶š—ñ‚ª“ü—Í‚³‚ê‚Ä‚¢‚Ü‚·B');
+			errorprint('ï¿½ï¿½ï¿½ÍƒGï¿½ï¿½ï¿½[','ï¿½ï¿½ï¿½Oï¿½Ì•Û‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É•sï¿½ï¿½ï¿½È•ï¿½ï¿½ï¿½ï¿½ñ‚ª“ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B');
 		}
 		$setvalue = array($newpassword,$temp,$logfilename,$hyouji,$logcount,$exhost,$exstr,
 						$erchk,$path,$pagechange,$pagechangecount,$pattern);
@@ -423,64 +420,64 @@ function mainset(){
 	}
 
 	$print = "<TABLE border=1>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@ƒpƒXƒ[ƒh•ÏX</TD>\n"
-		   . "<TD>Œ»İ‚ÌƒpƒXƒ[ƒh@<INPUT size=20 type=password name=password><BR>"
-		   . "•ÏX‚·‚éƒpƒXƒ[ƒh<INPUT size=20 type=password name=newpass></TD>\n"
+		   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ÏX</TD>\n"
+		   . "<TD>ï¿½ï¿½ï¿½İ‚Ìƒpï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½@<INPUT size=20 type=password name=password><BR>"
+		   . "ï¿½ÏXï¿½ï¿½ï¿½ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½h<INPUT size=20 type=password name=newpass></TD>\n"
 		   . "<TD rowspan=11><A href=\"javascript:help('mainset')\"><B>HELP</B></A></TD></TR>\n"
-		   . "<TR><TD bgcolor=#cccccc>Ÿ@ƒeƒ“ƒvƒŒ[ƒgƒtƒ@ƒCƒ‹–¼</TD>\n"
+		   . "<TR><TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½</TD>\n"
 		   . "<TD><INPUT size=40 type=text name=temp value='".$set['temp']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@ƒƒOƒtƒ@ƒCƒ‹–¼</TD>\n"
+		   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½Oï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½</TD>\n"
 		   . "<TD><INPUT size=20 type=text name=logfilename value='".$set['logfilename']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@ƒy[ƒW‚²‚Æ‚Ì•\¦Œ”</TD>\n"
-		   . "<TD><INPUT size=10 type=text name=hyouji value='".$set['hyouji']."' style=\"text-align : right;\">Œ</TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@ƒƒO‚Ì•Û‘¶Œ”</TD>\n<TD>"
-		   . "<INPUT size=10 type=text name=logcount value='".$set['logcount']."' style=\"text-align : right;\">Œ</TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@“Še•s‰Â‚ÌƒzƒXƒg–¼</TD>\n<TD>"
+		   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½yï¿½[ï¿½Wï¿½ï¿½ï¿½Æ‚Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</TD>\n"
+		   . "<TD><INPUT size=10 type=text name=hyouji value='".$set['hyouji']."' style=\"text-align : right;\">ï¿½ï¿½</TD>\n</TR>\n"
+		   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½Oï¿½Ì•Û‘ï¿½ï¿½ï¿½ï¿½ï¿½</TD>\n<TD>"
+		   . "<INPUT size=10 type=text name=logcount value='".$set['logcount']."' style=\"text-align : right;\">ï¿½ï¿½</TD>\n</TR>\n"
+		   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½eï¿½sï¿½Â‚Ìƒzï¿½Xï¿½gï¿½ï¿½</TD>\n<TD>"
 		   . "<INPUT size=80 type=text name=exhost value='".$set['exhost']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@“Še•s‰Â‚Ì•¶š—ñ</TD>\n<TD>"
+		   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½eï¿½sï¿½Â‚Ì•ï¿½ï¿½ï¿½ï¿½ï¿½</TD>\n<TD>"
 		   . "<INPUT size=80 type=text name=exstr value='".$set['exstr']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@•s³ƒAƒNƒZƒXƒ`ƒFƒbƒN‚ğ‚·‚é‚½‚ß‚ÌƒpƒX</TD>\n<TD>"
+		   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½sï¿½ï¿½ï¿½Aï¿½Nï¿½Zï¿½Xï¿½`ï¿½Fï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚Ìƒpï¿½X</TD>\n<TD>"
 		   . "<INPUT size=80 type=text name=path value='".$set['path']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>Ÿ@“Šeƒ`ƒFƒbƒN‚ğ</TD>\n<TD>"
+		   . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½eï¿½`ï¿½Fï¿½bï¿½Nï¿½ï¿½</TD>\n<TD>"
 		   . "<INPUT type=radio name=erchk value='ON'";
 	if($set['erchk'] == "ON"){
 		$print.=" checked";
 	}
-	$print	 .= ">‚·‚é\n"
+	$print	 .= ">ï¿½ï¿½ï¿½ï¿½\n"
 			  . "<INPUT type=radio name=erchk value='OFF'";
 	if($set['erchk'] == "OFF"){
 		$print.=" checked";
 	}
-	$print	 .= ">‚µ‚È‚¢\n</TD>\n</TR>\n"
-			  . "<TR>\n<TD bgcolor=#cccccc>Ÿ@ƒy[ƒW•ÏX—pƒŠƒ“ƒN•¶š—ñ</TD>\n"
+	$print	 .= ">ï¿½ï¿½ï¿½È‚ï¿½\n</TD>\n</TR>\n"
+			  . "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½yï¿½[ï¿½Wï¿½ÏXï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</TD>\n"
 			  . "<TD><INPUT type=radio name=pagechange value=\"0\"";
 	if($set['pagechange'] != "1"){
 		$print .= " checked";
 	}
-	$print .= ">‘SŒ•\¦‚·‚é<BR>\n"
+	$print .= ">ï¿½Sï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<BR>\n"
 			. "<input type=radio name=pagechange value=\"1\"";
 	if($set['pagechange'] == "1"){
 		$print .= " checked";
 	}
-	$print .= ">‘OŒã<input type=text name=\"pagechangecount\" value=\"".$set['pagechangecount']."\" size=5 style=\"text-align : right;\">Œ•\¦</TD>\n</TR>\n"
-			. "<TR>\n<TD bgcolor=#cccccc>Ÿ@ƒŠƒ“ƒN•¶š—ñ‚Ì•\¦ƒpƒ^[ƒ“</TD>\n"
+	$print .= ">ï¿½Oï¿½ï¿½<input type=text name=\"pagechangecount\" value=\"".$set['pagechangecount']."\" size=5 style=\"text-align : right;\">ï¿½ï¿½ï¿½\ï¿½ï¿½</TD>\n</TR>\n"
+			. "<TR>\n<TD bgcolor=#cccccc>ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì•\ï¿½ï¿½ï¿½pï¿½^ï¿½[ï¿½ï¿½</TD>\n"
 			. "<TD><INPUT type=radio name=pattern value=\"0\"";
 	if($set['pattern'] == "" || $set['pattern'] == "0"){
 		$print .= " checked";
 	}
-	$print .= "> @ [ <B>1</B> ] [ <A>2</A> ] [ <A>3</A> ]<BR>\n"
+	$print .= "> ï¿½@ [ <B>1</B> ] [ <A>2</A> ] [ <A>3</A> ]<BR>\n"
 			. "<input type=radio name=pattern value=\"1\"";
 	if($set['pattern'] == "1"){
 		$print .= " checked";
 	}
-	$print .= "> @ y <B>1</B> z y <A>2</A> z y <A>3</A> z<BR>\n"
+	$print .= "> ï¿½@ ï¿½y <B>1</B> ï¿½z ï¿½y <A>2</A> ï¿½z ï¿½y <A>3</A> ï¿½z<BR>\n"
 			. "<input type=radio name=pattern value=\"2\"";
 	if($set['pattern'] == "2"){
 		$print .= " checked";
 	}
-	$print .= "> @ <B>1</B> <A>2</A> <A>3</A>\n"
+	$print .= "> ï¿½@ <B>1</B> <A>2</A> <A>3</A>\n"
 			. "</TD></TR>\n"
-			. "<TR>\n<TD colspan=3 align=center><INPUT type=submit name=henkou value='İ’è‚ğ•ÏX‚·‚é'></TD>\n</TR>\n"
+			. "<TR>\n<TD colspan=3 align=center><INPUT type=submit name=henkou value='ï¿½İ’ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½'></TD>\n</TR>\n"
 			. "<INPUT type=hidden name=mainset value=aaa>\n"
 			. "</TABLE>\n";
 
@@ -489,7 +486,7 @@ function mainset(){
 	$script .= "\tif(str == 'mainset'){	window.open('./help/mainset.html','','width=400,height=400,scrollbars');}\n";
 	$script .= "}\n//-->\n</SCRIPT>";
 
-	funcprint($script,'ƒXƒŒƒbƒhŒf¦”Â1_PHP”Å@‰Šúİ’è',$print);
+	funcprint($script,'ï¿½Xï¿½ï¿½ï¿½bï¿½hï¿½fï¿½ï¿½ï¿½ï¿½1_PHPï¿½Å@ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½',$print);
 }
 
 ##################################################################################
@@ -513,15 +510,15 @@ function funcprint($scr,$title,$pr) {
 function passchange($oldpass,$newpass) {
 	global $set;
 	if($oldpass == "" && $set['pass']){
-		errorprint('“ü—ÍƒGƒ‰[','Œ»İ‚ÌƒpƒXƒ[ƒh‚Ì€–Ú‚ª“ü—Í‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ');
+		errorprint('ï¿½ï¿½ï¿½ÍƒGï¿½ï¿½ï¿½[','ï¿½ï¿½ï¿½İ‚Ìƒpï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½Ìï¿½ï¿½Ú‚ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
 	} if($newpass == ""){
-		errorprint('“ü—ÍƒGƒ‰[','•ÏX‚·‚éƒpƒXƒ[ƒh‚Ì€–Ú‚ª“ü—Í‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ');
+		errorprint('ï¿½ï¿½ï¿½ÍƒGï¿½ï¿½ï¿½[','ï¿½ÏXï¿½ï¿½ï¿½ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½Ìï¿½ï¿½Ú‚ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
 	
 	}
 	$cnewpass = crypt($newpass,'ps');
 	$coldpass = crypt($oldpass,'ps');
 	if($set['pass'] != $coldpass && $set['pass']){
-		errorprint('“ü—ÍƒGƒ‰[','ƒpƒXƒ[ƒh‚ªˆá‚¢‚Ü‚·B“ü—Í‚µ‚È‚¨‚µ‚Ä‚­‚¾‚³‚¢B');
+		errorprint('ï¿½ï¿½ï¿½ÍƒGï¿½ï¿½ï¿½[','ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½á‚¢ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½Í‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B');
 	}
 	setcookie("pass",$cnewpass);
 	$set['pass'] = $cnewpass;
@@ -542,12 +539,12 @@ function setchange($setfile,$key,$value) {
 		fwrite($SET,$data);
 		fclose($SET);
 	} elseif(file_exists($setfile)){
-		errorprint('file Open Error!',"ƒtƒ@ƒCƒ‹‚Ì‘‚«‚İ‚ªo—ˆ‚Ü‚¹‚ñBƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B-> $setfile");
+		errorprint('file Open Error!',"ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½pï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚İ‚Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B-> $setfile");
 	} else{
-		errorprint('file Open Error!',"ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB<BR>‹ó‚Ìƒtƒ@ƒCƒ‹‚ğè“®‚Åì¬‚µ‚Ä‚­‚¾‚³‚¢B-> $setfile");
+		errorprint('file Open Error!',"ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B<BR>ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½è“®ï¿½Åì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B-> $setfile");
 	}
 
-	$chstr = "İ’è‚ğ•ÏX‚µ‚Ü‚µ‚½B";
+	$chstr = "ï¿½İ’ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B";
 }
 
 function setchange2($changestr,$changefile) {
@@ -558,11 +555,11 @@ function setchange2($changestr,$changefile) {
 		fwrite($SET,$changestr);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","ƒtƒ@ƒCƒ‹‚Ì‘‚«‚İ‚ªo—ˆ‚Ü‚¹‚ñBƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B-> $changefile");
+		errorprint("file Open Error!","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½pï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚İ‚Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B-> $changefile");
 	} else{
-		errorprint('file Open Error!',"ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB<BR>‹ó‚Ìƒtƒ@ƒCƒ‹‚ğè“®‚Åì¬‚µ‚Ä‚­‚¾‚³‚¢B-> $changefile");
+		errorprint('file Open Error!',"ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B<BR>ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½è“®ï¿½Åì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B-> $changefile");
 	}
-	$chstr = "İ’è‚ğ•ÏX‚µ‚Ü‚µ‚½B";
+	$chstr = "ï¿½İ’ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B";
 }
 
 function setchange3($changelist,$changefile){
@@ -573,11 +570,11 @@ function setchange3($changelist,$changefile){
 		fwrite($SET,$changelist);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","ƒtƒ@ƒCƒ‹‚Ì‘‚«‚İ‚ªo—ˆ‚Ü‚¹‚ñBƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B-> $changefile");
+		errorprint("file Open Error!","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½pï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚İ‚Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B-> $changefile");
 	} else{
-		errorprint('file Open Error!',"ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB<BR>‹ó‚Ìƒtƒ@ƒCƒ‹‚ğè“®‚Åì¬‚µ‚Ä‚­‚¾‚³‚¢B-> $changefile");
+		errorprint('file Open Error!',"ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B<BR>ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½è“®ï¿½Åì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B-> $changefile");
 	}
-	$chstr = "İ’è‚ğ•ÏX‚µ‚Ü‚µ‚½B";
+	$chstr = "ï¿½İ’ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B";
 }
 
 function setread($filename) {
@@ -597,7 +594,7 @@ function setread($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñBƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚é‚©Aƒtƒ@ƒCƒ‹‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B-> $filename");
+		errorprint("file open error","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½é‚©ï¿½Aï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒpï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B-> $filename");
 	}
 	return $data;
 }
@@ -616,7 +613,7 @@ function setread2($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñBƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚é‚©Aƒtƒ@ƒCƒ‹‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B-> $filename");
+		errorprint("file open error","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½é‚©ï¿½Aï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒpï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B-> $filename");
 	}
 	return $data;
 }
@@ -633,7 +630,7 @@ function readtemp($filename) {
 		}
 		fclose($DAT);
 	} else{
-		errorprint("File Open Error!","ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñB");
+		errorprint("File Open Error!","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
 	}
 	return $data;
 }
@@ -658,7 +655,7 @@ function auth() {
 	}
 	if($clear != 1){
 		if($inpass){
-			$error = "<FONT color='red'>ƒpƒXƒ[ƒh‚ªˆê’v‚µ‚Ü‚¹‚ñI</FONT>";
+			$error = "<FONT color='red'>ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½I</FONT>";
 		}
 		$temp = readtemp("temp/admin.html");
 		$temp = preg_replace("/<!--ERROR-->/",$error,$temp);

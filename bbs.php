@@ -1,8 +1,5 @@
-<?php header("Content-Type: text/html;charset=Shift_JIS");?>
+<?php header("Content-Type: text/html");?>
 <?php
-mb_language("Japanese");
-mb_regex_encoding("SJIS");
-mb_internal_encoding("SJIS");
 
 ###########################################################################
 # �X���b�h�f����1_PHP��
@@ -277,19 +274,19 @@ function del(){
 			$form = "<B>�f�[�^�̏C��</B><BR><BR>\n"
 				  . "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n"
 				  . "<TABLE border=\"1\">\n"
-				  . "<TR><TD>�����O</TD>\n"
+				  . "<TR><TD>名前</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"name\" value=\"$logs[2]\"></TD></TR>\n"
-				  . "<TR><TD>�^�C�g��</TD>\n"
+				  . "<TR><TD>題名</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title\" value=\"$logs[3]\"></TD></TR>\n"
-				  . "<TR><TD>���[���A�h���X</TD>\n"
+				  . "<TR><TD>メールアドレス</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail\" value=\"$logs[4]\"></TD></TR>\n"
-				  . "<TR><TD>�z�[���y�[�W�A�h���X</TD>\n"
+				  . "<TR><TD>URL</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home\" value=\"$logs[5]\"></TD></TR>\n"
-				  . "<TR><TD>�R�����g</TD>\n"
+				  . "<TR><TD>コメント</TD>\n"
 				  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment\">$logs[6]</TEXTAREA></TD></TR>\n"
-				  . "<TR><TD>�C����폜�p�X���[�h</TD>\n"
+				  . "<TR><TD>修正・削除パスワード</TD>\n"
 				  . "<TD><input type=password name=delpass value=\"$logs[7]\" size=10></TD></TR>\n"
-				  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit value=\"�C������\"></TD></TR>\n"
+				  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit value=\"投稿\"></TD></TR>\n"
 				  . "</TABLE>\n"
 				  . "<input type=hidden name=delcom value=\"1\">\n"
 				  . "<input type=hidden name=lognum value=\"$lognum\">\n"
