@@ -151,7 +151,7 @@ function mainprint(){
 		$count++;
 	}
 	if($logdata == ""){
-		$logdata .= "�܂����e���ꂽ�f�[�^������܂���B";
+		$logdata .= "まだ投稿がありません。";
 	}
 
 	$print = preg_replace("/<!--FORM-->/",$form,$print);
