@@ -5,11 +5,11 @@ mb_regex_encoding("SJIS");
 mb_internal_encoding("SJIS");
 
 ###########################################################################
-# ƒXƒŒƒbƒhŒf¦”Â1_PHP”Å
+# ï¿½Xï¿½ï¿½ï¿½bï¿½hï¿½fï¿½ï¿½ï¿½ï¿½1_PHPï¿½ï¿½
 # Ver3.0 PHP8.4
 # https://cgi-garage.com/
 ###########################################################################
-$listmark = array("","Ÿ","","¡"," ","œ","›","","š","™");
+$listmark = array("","ï¿½ï¿½","ï¿½ï¿½","ï¿½ï¿½","ï¿½ï¿½","ï¿½ï¿½","ï¿½ï¿½","ï¿½ï¿½","ï¿½ï¿½","ï¿½ï¿½");
 $remaddr = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 if($remaddr == ""){
 	$remaddr = "-";
@@ -46,18 +46,18 @@ function mainprint(){
 
 	$form = "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n"
 		  . "<TABLE border=\"1\">\n"
-		  . "<TR><TD>‚¨–¼‘O</TD>\n"
+		  . "<TR><TD>ï¿½ï¿½ï¿½ï¿½ï¿½O</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"name\"></TD></TR>\n"
-		  . "<TR><TD>ƒ^ƒCƒgƒ‹</TD>\n"
+		  . "<TR><TD>ï¿½^ï¿½Cï¿½gï¿½ï¿½</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title\"></TD></TR>\n"
-		  . "<TR><TD>ƒ[ƒ‹ƒAƒhƒŒƒX</TD>\n"
+		  . "<TR><TD>ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½hï¿½ï¿½ï¿½X</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail\"></TD></TR>\n"
-		  . "<TR><TD>ƒz[ƒ€ƒy[ƒWƒAƒhƒŒƒX</TD>\n"
+		  . "<TR><TD>ï¿½zï¿½[ï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½Aï¿½hï¿½ï¿½ï¿½X</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home\" value=\"https://\"></TD></TR>\n"
-		  . "<TR><TD>ƒRƒƒ“ƒg</TD>\n"
+		  . "<TR><TD>ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½g</TD>\n"
 		  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment\"></TEXTAREA></TD></TR>\n"
-		  . "<TR><TD colspan=\"2\" align=center>C³EíœƒpƒXƒ[ƒhF<input type=password name=delpass size=10>@@\n"
-		  . "<input type=submit name=submit value=\"“Še‚·‚é\"></TD></TR>\n"
+		  . "<TR><TD colspan=\"2\" align=center>ï¿½Cï¿½ï¿½ï¿½Eï¿½íœï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½F<input type=password name=delpass size=10>ï¿½@ï¿½@\n"
+		  . "<input type=submit name=submit value=\"ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½\"></TD></TR>\n"
 		  . "</TABLE>\n"
 		  . "</FORM>\n";
 
@@ -91,7 +91,7 @@ function mainprint(){
 			if(isset($i[8])){$i8 = $i[8];}
 			$i6 = preg_replace("/<!KAIGYOU>/","<BR>",$i6);
 			if($i2 == ""){
-				$i2 = "–¼–³‚µ‚³‚ñ";
+				$i2 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 			}
 			$logdata .= "<HR>\n";
 			$logdata .= "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n";
@@ -102,18 +102,18 @@ function mainprint(){
 			if($i[4]){
 				$logdata .= "</A>";
 			}
-			$logdata .= "@@<B>".$i3."</B>@@“Še“úF".$i0."@@ƒzƒXƒg–¼F".$i1."\n"
-					  . "<input type=submit name=\"hensin\" value=\"•ÔM\"><BR><BR>\n"
+			$logdata .= "ï¿½@ï¿½@<B>".$i3."</B>ï¿½@ï¿½@ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½F".$i0."ï¿½@ï¿½@ï¿½zï¿½Xï¿½gï¿½ï¿½ï¿½F".$i1."\n"
+					  . "<input type=submit name=\"hensin\" value=\"ï¿½ÔM\"><BR><BR>\n"
 					  . "$i6<BR>\n";
 			if($i[5]){
 				$logdata .= "<BR><A href=\"".$i5."\">$i5</A><BR>\n";
 			}
 			$logdata .= "<input type=password name=delpass size=10>\n"
 					  . "<select name=delcom>\n"
-					  . "<option value=1>C³</option>\n"
-					  . "<option value=2>íœ</option>\n"
+					  . "<option value=1>ï¿½Cï¿½ï¿½</option>\n"
+					  . "<option value=2>ï¿½íœ</option>\n"
 					  . "</select>\n"
-					  . "<input type=submit name=del value=\"Às\">\n"
+					  . "<input type=submit name=del value=\"ï¿½ï¿½ï¿½s\">\n"
 					  . "<input type=hidden name=lognum value=\"".$i8."\"></FORM>\n";
 			foreach ($leslog as $q){
 				if($q){
@@ -129,7 +129,7 @@ function mainprint(){
 					if(isset($p[6])){$p6 = $p[6];}
 					if(isset($p[7])){$p7 = $p[7];}
 					if($p3 == ""){
-						$p3 = "–¼–³‚µ‚³‚ñ";
+						$p3 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 					}
 					if($p0 == $i8){
 						$logdata .= "<UL>\n<LI>\n";
@@ -141,7 +141,7 @@ function mainprint(){
 							$logdata .= "</A>";
 						}
 						$p7 = preg_replace("/<!KAIGYOU>/","<BR>",$p7);
-						$logdata .= "@@<B>$p4</B>@@“Še“úF".$p1."@@ƒzƒXƒg–¼F".$p2."<BR>\n"
+						$logdata .= "ï¿½@ï¿½@<B>$p4</B>ï¿½@ï¿½@ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½F".$p1."ï¿½@ï¿½@ï¿½zï¿½Xï¿½gï¿½ï¿½ï¿½F".$p2."<BR>\n"
 								  . "$p7";
 						if($p6){
 							$logdata .= "<BR><BR>\n<A href=\"$p6\">$p6</A>\n";
@@ -154,7 +154,7 @@ function mainprint(){
 		$count++;
 	}
 	if($logdata == ""){
-		$logdata .= "‚Ü‚¾“Še‚³‚ê‚½ƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñB";
+		$logdata .= "ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ê‚½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B";
 	}
 
 	$print = preg_replace("/<!--FORM-->/",$form,$print);
@@ -175,8 +175,8 @@ function linkstr($hyoujicount,$hyouji,$start,$end,$searchstr) {
 	$mae = "";
 	$usiro = "";
 	if($set['pattern'] == "1"){
-		$mae = "y ";
-		$usiro = " z";
+		$mae = "ï¿½y ";
+		$usiro = " ï¿½z";
 	} elseif($set['pattern'] == "2"){
 		$mae = "";
 		$usiro = "";
@@ -215,14 +215,14 @@ function linkstr($hyoujicount,$hyouji,$start,$end,$searchstr) {
 				$code = strtocode($searchstr);
 				$befnum .= "&searchstr=$code";
 			}
-			$befnum .= "\"><B>&lt;&lt;‘O‚Ì".$hyouji."Œ</B></A>@";
+			$befnum .= "\"><B>&lt;&lt;ï¿½Oï¿½ï¿½".$hyouji."ï¿½ï¿½</B></A>ï¿½@";
 		} elseif( $i == ($nownum + 1) && $set['pagechange'] ){
-			$aftnum = "@<A href=\"bbs.php?start=$startnum&end=$endnum&hyouji=$hyouji";
+			$aftnum = "ï¿½@<A href=\"bbs.php?start=$startnum&end=$endnum&hyouji=$hyouji";
 			if($searchstr != ""){
 				$code = strtocode($searchstr);
 				$aftnum .= "&searchstr=$code";
 			}
-			$aftnum .= "\"><B>Ÿ‚Ì".$hyouji."Œ&gt;&gt;</B></A>@";
+			$aftnum .= "\"><B>ï¿½ï¿½ï¿½ï¿½".$hyouji."ï¿½ï¿½&gt;&gt;</B></A>ï¿½@";
 		}
 	}
 	$numstr2 = $befnum.$numstr.$aftnum;
@@ -265,7 +265,7 @@ function del(){
 				}
 				fclose($LOGS);
 			} else{
-				errorprint('file open error!',"ƒXƒŒƒbƒhƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñBƒf[ƒ^‚Ìíœ‚ªo—ˆ‚Ü‚¹‚ñB");		
+				errorprint('file open error!',"ï¿½Xï¿½ï¿½ï¿½bï¿½hï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½fï¿½[ï¿½^ï¿½Ìíœï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");		
 			}
 			setchange3($newlog,$set['logfilename']);
 			setchange3($newles,'les.cgi');
@@ -274,22 +274,22 @@ function del(){
 		} elseif($logs[7] == $delpass && $delcom == "1"){
 			$print = readtemp($set['temp']);
 			$logs[6] = preg_replace("/<!KAIGYOU>/","\n",$logs[6]);
-			$form = "<B>ƒf[ƒ^‚ÌC³</B><BR><BR>\n"
+			$form = "<B>ï¿½fï¿½[ï¿½^ï¿½ÌCï¿½ï¿½</B><BR><BR>\n"
 				  . "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n"
 				  . "<TABLE border=\"1\">\n"
-				  . "<TR><TD>‚¨–¼‘O</TD>\n"
+				  . "<TR><TD>ï¿½ï¿½ï¿½ï¿½ï¿½O</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"name\" value=\"$logs[2]\"></TD></TR>\n"
-				  . "<TR><TD>ƒ^ƒCƒgƒ‹</TD>\n"
+				  . "<TR><TD>ï¿½^ï¿½Cï¿½gï¿½ï¿½</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title\" value=\"$logs[3]\"></TD></TR>\n"
-				  . "<TR><TD>ƒ[ƒ‹ƒAƒhƒŒƒX</TD>\n"
+				  . "<TR><TD>ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½hï¿½ï¿½ï¿½X</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail\" value=\"$logs[4]\"></TD></TR>\n"
-				  . "<TR><TD>ƒz[ƒ€ƒy[ƒWƒAƒhƒŒƒX</TD>\n"
+				  . "<TR><TD>ï¿½zï¿½[ï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½Aï¿½hï¿½ï¿½ï¿½X</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home\" value=\"$logs[5]\"></TD></TR>\n"
-				  . "<TR><TD>ƒRƒƒ“ƒg</TD>\n"
+				  . "<TR><TD>ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½g</TD>\n"
 				  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment\">$logs[6]</TEXTAREA></TD></TR>\n"
-				  . "<TR><TD>C³¥íœƒpƒXƒ[ƒh</TD>\n"
+				  . "<TR><TD>ï¿½Cï¿½ï¿½ï¿½ï¿½íœï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½h</TD>\n"
 				  . "<TD><input type=password name=delpass value=\"$logs[7]\" size=10></TD></TR>\n"
-				  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit value=\"C³‚·‚é\"></TD></TR>\n"
+				  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit value=\"ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\"></TD></TR>\n"
 				  . "</TABLE>\n"
 				  . "<input type=hidden name=delcom value=\"1\">\n"
 				  . "<input type=hidden name=lognum value=\"$lognum\">\n"
@@ -300,7 +300,7 @@ function del(){
 			echo $print;
 			exit;
 		} elseif($logs[7] != $delpass){
-			errorprint('C³Eíœ‚ğ‚Å‚«‚Ü‚¹‚ñ',"ƒpƒXƒ[ƒh‚ªˆê’v‚µ‚Ü‚¹‚ñB");
+			errorprint('ï¿½Cï¿½ï¿½ï¿½Eï¿½íœï¿½ï¿½ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½',"ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
 		}
 	}
 }
@@ -349,17 +349,17 @@ function hensin(){
 		  . "<CENTER>\n"
 		  . "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n"
 		  . "<TABLE border=\"1\">"
-		  . "<TR><TD>‚¨–¼‘O</TD>\n"
+		  . "<TR><TD>ï¿½ï¿½ï¿½ï¿½ï¿½O</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"name2\"></TD></TR>\n"
-		  . "<TR><TD>ƒ^ƒCƒgƒ‹</TD>\n"
+		  . "<TR><TD>ï¿½^ï¿½Cï¿½gï¿½ï¿½</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title2\" value=\"RE,$relog[3]\"></TD></TR>\n"
-		  . "<TR><TD>ƒ[ƒ‹ƒAƒhƒŒƒX</TD>\n"
+		  . "<TR><TD>ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½hï¿½ï¿½ï¿½X</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail2\"></TD></TR>\n"
-		  . "<TR><TD>ƒz[ƒ€ƒy[ƒWƒAƒhƒŒƒX</TD>\n"
+		  . "<TR><TD>ï¿½zï¿½[ï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½Aï¿½hï¿½ï¿½ï¿½X</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home2\" value=\"https://\"></TD></TR>\n"
-		  . "<TR><TD>ƒRƒƒ“ƒg</TD>\n"
+		  . "<TR><TD>ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½g</TD>\n"
 		  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment2\"></TEXTAREA></TD></TR>\n"
-		  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit2 value=\"“Še‚·‚é\"></TD></TR>\n"
+		  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit2 value=\"ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½\"></TD></TR>\n"
 		  . "<input type=hidden name=hensin value=aaa>\n"
 		  . "<input type=hidden name=lognum value=\"$lognum\">\n"
 		  . "</TABLE>\n"
@@ -412,7 +412,7 @@ function submit(){
 				$newlog = $i[0]."\t".$rehost."\t".$name."\t".$title."\t".$mail."\t".$home."\t".$comment."\t".$delpass."\n";
 				$newlogs .= $newlog;
 			} elseif($count == $lognum && $i[7] != $delpass2){
-				errorprint('‹L–‚ÌC³‚ğo—ˆ‚Ü‚¹‚ñB','ƒpƒXƒ[ƒh‚ªˆê’v‚µ‚Ü‚¹‚ñB');
+				errorprint('ï¿½Lï¿½ï¿½ï¿½ÌCï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B','ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B');
 			} else{
 				array_pop($i);
 				$newlogs .= implode("\t",$i) . "\n";
@@ -450,7 +450,7 @@ function submit(){
 			fwrite($SET,$backlog);
 			fclose($SET);
 		} else{
-			errorprint("file Open Error!","ƒtƒ@ƒCƒ‹‚ÌƒoƒbƒNƒAƒbƒv‚ªo—ˆ‚Ü‚¹‚ñB<BR>log ƒfƒBƒŒƒNƒgƒŠ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B");
+			errorprint("file Open Error!","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒoï¿½bï¿½Nï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B<BR>log ï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½Ìƒpï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B");
 		}
 		setchange3($newlog,$set['logfilename']);
 
@@ -462,7 +462,7 @@ function submit(){
 			fwrite($SET,$lesdat);
 			fclose($SET);
 		} else{
-			errorprint("file Open Error!","ƒtƒ@ƒCƒ‹‚ÌƒoƒbƒNƒAƒbƒv‚ªo—ˆ‚Ü‚¹‚ñB<BR>log ƒfƒBƒŒƒNƒgƒŠ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B");
+			errorprint("file Open Error!","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒoï¿½bï¿½Nï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B<BR>log ï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½Ìƒpï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B");
 		}
 	}
 }
@@ -475,30 +475,30 @@ function erchk($nm,$tt,$ml,$hm,$cm,$dc) {
 		$exhost = explode(" ",$set['exhost']);
 		foreach ($exhost as $i){
 			if(mb_ereg("$i",$rehost)){
-				errorprint('“ŠeƒGƒ‰[','“Še‚Å‚«‚Ü‚¹‚ñB');
+				errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[','ï¿½ï¿½ï¿½eï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B');
 			}
 		}
 	} if($set['exstr']){
 		$exstr = explode(" ",$set['exstr']);
 		foreach ($exstr as $i){
 			if(mb_ereg($i,$cm) || mb_ereg("$i",$nm) || mb_ereg("$i",$tt) || mb_ereg("$i",$ml) || mb_ereg("$i",$hm)){
-				errorprint('“ŠeƒGƒ‰[','“Še‚Å‚«‚È‚¢•¶š—ñ‚ª“ü—Í‚³‚ê‚Ä‚¢‚Ü‚·B');
+				errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[','ï¿½ï¿½ï¿½eï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ‚ª“ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B');
 			}
 		}
 	} if($set['erchk'] == "ON"){
 		$str = $nm." ".$tt." ".$ml." ".$hm." ".$cm;
 		if($tt == "" || $cm == ""){
-			errorprint('“ŠeƒGƒ‰[','ƒ^ƒCƒgƒ‹‚ÆƒRƒƒ“ƒg‚Í•K{€–Ú‚Å‚·B');
+			errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[','ï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½ÆƒRï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Í•Kï¿½{ï¿½ï¿½ï¿½Ú‚Å‚ï¿½ï¿½B');
 		} if(mb_ereg("<(.+)>",$str)){
-			errorprint('“ŠeƒGƒ‰[','HTMLƒ^ƒO‚Í‚Â‚©‚¦‚Ü‚¹‚ñB');
+			errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[','HTMLï¿½^ï¿½Oï¿½Í‚Â‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B');
 		} if(!mb_ereg("[^(a-zA-Z0-9\\\|\^\~\-\=\)\(\'\&\%\$\#\"\!\ \[\]\{\}\@\`\:\;\*\+\_\/\?\.\>\,\<\s\t\r\n)]",$str)){
-			errorprint('“ŠeƒGƒ‰[',"“Še‚Å‚«‚Ü‚¹‚ñ");
+			errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[',"ï¿½ï¿½ï¿½eï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½");
 		} if($set['path'] && !mb_ereg($set['path'],$ref)){
-			errorprint('“ŠeƒGƒ‰[','•s³‚ÈƒAƒNƒZƒX‚Å‚·B');
+			errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[','ï¿½sï¿½ï¿½ï¿½ÈƒAï¿½Nï¿½Zï¿½Xï¿½Å‚ï¿½ï¿½B');
 		} if(!mb_ereg("^(.+)\@(.+)\.(.+)$",$ml) && $ml){
-			errorprint('“ŠeƒGƒ‰[','ƒ[ƒ‹ƒAƒhƒŒƒX‚ª•s³‚Å‚·B');
+			errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[','ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½hï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Å‚ï¿½ï¿½B');
 		} if($rehost == "-"){
-			errorprint('“ŠeƒGƒ‰[','ƒŠƒ‚[ƒgƒzƒXƒg–¼‚ğ•\¦‚µ‚Ä‚­‚¾‚³‚¢B');
+			errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[','ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½gï¿½zï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B');
 		}
 	}
 	$cm = preg_replace("/\r\n|\r|\n/","<!KAIGYOU>",$cm);
@@ -507,7 +507,7 @@ function erchk($nm,$tt,$ml,$hm,$cm,$dc) {
 		if($nm == $fl[2] && $rehost == $fl[1] && $tt == $fl[3] && $ml == $fl[4] &&
 			(($hm == "https://" && $fl[5] == "") || ($hm && $fl[5] && $hm == $fl[5])) &&
 			$cm == $fl[6]){
-				errorprint('“ŠeƒGƒ‰[','“ñd“Še‚Å‚·B'."<BR> $finallog");
+				errorprint('ï¿½ï¿½ï¿½eï¿½Gï¿½ï¿½ï¿½[','ï¿½ï¿½dï¿½ï¿½ï¿½eï¿½Å‚ï¿½ï¿½B'."<BR> $finallog");
 		}
 	}
 }
@@ -526,12 +526,12 @@ function setchange($setfile,$key,$value) {
 		fwrite($SET,$data);
 		fclose($SET);
 	} elseif(file_exists($setfile)){
-		errorprint('file Open Error!',"ƒtƒ@ƒCƒ‹‚Ì‘‚«‚İ‚ªo—ˆ‚Ü‚¹‚ñBƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B8");
+		errorprint('file Open Error!',"ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½pï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚İ‚Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B8");
 	} else{
-		errorprint('file Open Error!',"ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB<BR>‹ó‚Ìƒtƒ@ƒCƒ‹‚ğè“®‚Åì¬‚µ‚Ä‚­‚¾‚³‚¢B7");
+		errorprint('file Open Error!',"ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B<BR>ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½è“®ï¿½Åì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B7");
 	}
 
-	$chstr = "İ’è‚ğ•ÏX‚µ‚Ü‚µ‚½B";
+	$chstr = "ï¿½İ’ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B";
 }
 
 function setchange2($changestr,$changefile) {
@@ -542,11 +542,11 @@ function setchange2($changestr,$changefile) {
 		fwrite($SET,$changestr);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","ƒtƒ@ƒCƒ‹‚Ì‘‚«‚İ‚ªo—ˆ‚Ü‚¹‚ñBƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B6");
+		errorprint("file Open Error!","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½pï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚İ‚Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B6");
 	} else{
-		errorprint('file Open Error!',"ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB<BR>‹ó‚Ìƒtƒ@ƒCƒ‹‚ğè“®‚Åì¬‚µ‚Ä‚­‚¾‚³‚¢B5");
+		errorprint('file Open Error!',"ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B<BR>ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½è“®ï¿½Åì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B5");
 	}
-	$chstr = "İ’è‚ğ•ÏX‚µ‚Ü‚µ‚½B";
+	$chstr = "ï¿½İ’ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B";
 }
 
 function setchange3($changelist,$changefile){
@@ -557,11 +557,11 @@ function setchange3($changelist,$changefile){
 		fwrite($SET,$changelist);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","ƒtƒ@ƒCƒ‹‚Ì‘‚«‚İ‚ªo—ˆ‚Ü‚¹‚ñBƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B4");
+		errorprint("file Open Error!","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½pï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚İ‚Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B4");
 	} else{
-		errorprint('file Open Error!',"ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB<BR>‹ó‚Ìƒtƒ@ƒCƒ‹‚ğè“®‚Åì¬‚µ‚Ä‚­‚¾‚³‚¢B3");
+		errorprint('file Open Error!',"ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B<BR>ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½è“®ï¿½Åì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B3");
 	}
-	$chstr = "İ’è‚ğ•ÏX‚µ‚Ü‚µ‚½B";
+	$chstr = "ï¿½İ’ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B";
 }
 
 function setread($filename) {
@@ -581,7 +581,7 @@ function setread($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñBƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚é‚©Aƒtƒ@ƒCƒ‹‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B2");
+		errorprint("file open error","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½é‚©ï¿½Aï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒpï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B2");
 	}
 	return $data;
 }
@@ -607,7 +607,7 @@ function setread2($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñBƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚é‚©Aƒtƒ@ƒCƒ‹‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B1");
+		errorprint("file open error","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½é‚©ï¿½Aï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒpï¿½[ï¿½~ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B1");
 	}
 	return $data;
 }
@@ -624,7 +624,7 @@ function readtemp($filename) {
 		}
 		fclose($DAT);
 	} else{
-		errorprint("File Open Error!","ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñB");
+		errorprint("File Open Error!","ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B");
 	}
 	return $data;
 }
