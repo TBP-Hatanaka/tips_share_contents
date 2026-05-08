@@ -88,7 +88,7 @@ function mainprint(){
 			if(isset($i[8])){$i8 = $i[8];}
 			$i6 = preg_replace("/<!KAIGYOU>/","<BR>",$i6);
 			if($i2 == ""){
-				$i2 = "����������";
+				$i2 = "　";
 			}
 			$logdata .= "<HR>\n";
 			$logdata .= "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n";
