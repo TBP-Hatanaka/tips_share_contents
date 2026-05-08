@@ -99,18 +99,18 @@ function mainprint(){
 			if($i[4]){
 				$logdata .= "</A>";
 			}
-			$logdata .= "�@�@<B>".$i3."</B>�@�@���e�����F".$i0."�@�@�z�X�g���F".$i1."\n"
-					  . "<input type=submit name=\"hensin\" value=\"�ԐM\"><BR><BR>\n"
+			$logdata .= "　<B>".$i3."</B>　投稿日時".$i0."　ホスト名".$i1."\n"
+					  . "<input type=submit name=\"hensin\" value=\"返信\"><BR><BR>\n"
 					  . "$i6<BR>\n";
 			if($i[5]){
 				$logdata .= "<BR><A href=\"".$i5."\">$i5</A><BR>\n";
 			}
 			$logdata .= "<input type=password name=delpass size=10>\n"
 					  . "<select name=delcom>\n"
-					  . "<option value=1>�C��</option>\n"
-					  . "<option value=2>�폜</option>\n"
+					  . "<option value=1>修正</option>\n"
+					  . "<option value=2>削除</option>\n"
 					  . "</select>\n"
-					  . "<input type=submit name=del value=\"���s\">\n"
+					  . "<input type=submit name=del value=\"実行する\">\n"
 					  . "<input type=hidden name=lognum value=\"".$i8."\"></FORM>\n";
 			foreach ($leslog as $q){
 				if($q){
@@ -138,7 +138,7 @@ function mainprint(){
 							$logdata .= "</A>";
 						}
 						$p7 = preg_replace("/<!KAIGYOU>/","<BR>",$p7);
-						$logdata .= "�@�@<B>$p4</B>�@�@���e�����F".$p1."�@�@�z�X�g���F".$p2."<BR>\n"
+						$logdata .= "　<B>$p4</B>　投稿日時：".$p1."　ホスト名：".$p2."<BR>\n"
 								  . "$p7";
 						if($p6){
 							$logdata .= "<BR><BR>\n<A href=\"$p6\">$p6</A>\n";
@@ -262,7 +262,7 @@ function del(){
 				}
 				fclose($LOGS);
 			} else{
-				errorprint('file open error!',"�X���b�h�t�@�C�����J���܂���B�f�[�^�̍폜���o���܂���B");		
+				errorprint('file open error!',"�X���b�h�t�@修正���J���܂���B�f�[�^�̍폜���o���܂���B");		
 			}
 			setchange3($newlog,$set['logfilename']);
 			setchange3($newles,'les.cgi');
@@ -297,7 +297,7 @@ function del(){
 			echo $print;
 			exit;
 		} elseif($logs[7] != $delpass){
-			errorprint('�C���E�폜���ł��܂���',"�p�X���[�h����v���܂���B");
+			errorprint('修正�E削除���ł��܂���',"�p�X���[�h����v���܂���B");
 		}
 	}
 }
@@ -447,7 +447,7 @@ function submit(){
 			fwrite($SET,$backlog);
 			fclose($SET);
 		} else{
-			errorprint("file Open Error!","�t�@�C���̃o�b�N�A�b�v���o���܂���B<BR>log �f�B���N�g���̃p�[�~�b�V�������m�F���Ă��������B");
+			errorprint("file Open Error!","�t�@修正�̃o�b�N�A�b�v���o���܂���B<BR>log �f�B���N�g���̃p�[�~�b�V�������m�F���Ă��������B");
 		}
 		setchange3($newlog,$set['logfilename']);
 
@@ -459,7 +459,7 @@ function submit(){
 			fwrite($SET,$lesdat);
 			fclose($SET);
 		} else{
-			errorprint("file Open Error!","�t�@�C���̃o�b�N�A�b�v���o���܂���B<BR>log �f�B���N�g���̃p�[�~�b�V�������m�F���Ă��������B");
+			errorprint("file Open Error!","�t�@修正�̃o�b�N�A�b�v���o���܂���B<BR>log �f�B���N�g���̃p�[�~�b�V�������m�F���Ă��������B");
 		}
 	}
 }
@@ -523,9 +523,9 @@ function setchange($setfile,$key,$value) {
 		fwrite($SET,$data);
 		fclose($SET);
 	} elseif(file_exists($setfile)){
-		errorprint('file Open Error!',"�t�@�C���̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B8");
+		errorprint('file Open Error!',"�t�@修正�̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B8");
 	} else{
-		errorprint('file Open Error!',"�t�@�C�������݂��܂���B<BR>��̃t�@�C�����蓮�ō쐬���Ă��������B7");
+		errorprint('file Open Error!',"�t�@修正�����݂��܂���B<BR>��̃t�@修正���蓮�ō쐬���Ă��������B7");
 	}
 
 	$chstr = "�ݒ��ύX���܂����B";
@@ -539,9 +539,9 @@ function setchange2($changestr,$changefile) {
 		fwrite($SET,$changestr);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","�t�@�C���̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B6");
+		errorprint("file Open Error!","�t�@修正�̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B6");
 	} else{
-		errorprint('file Open Error!',"�t�@�C�������݂��܂���B<BR>��̃t�@�C�����蓮�ō쐬���Ă��������B5");
+		errorprint('file Open Error!',"�t�@修正�����݂��܂���B<BR>��̃t�@修正���蓮�ō쐬���Ă��������B5");
 	}
 	$chstr = "�ݒ��ύX���܂����B";
 }
@@ -554,9 +554,9 @@ function setchange3($changelist,$changefile){
 		fwrite($SET,$changelist);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","�t�@�C���̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B4");
+		errorprint("file Open Error!","�t�@修正�̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B4");
 	} else{
-		errorprint('file Open Error!',"�t�@�C�������݂��܂���B<BR>��̃t�@�C�����蓮�ō쐬���Ă��������B3");
+		errorprint('file Open Error!',"�t�@修正�����݂��܂���B<BR>��̃t�@修正���蓮�ō쐬���Ă��������B3");
 	}
 	$chstr = "�ݒ��ύX���܂����B";
 }
@@ -578,7 +578,7 @@ function setread($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","�t�@�C�����J���܂���B�t�@�C�������݂��邩�A�t�@�C���̃p�[�~�b�V�������m�F���Ă��������B2");
+		errorprint("file open error","�t�@修正���J���܂���B�t�@修正�����݂��邩�A�t�@修正�̃p�[�~�b�V�������m�F���Ă��������B2");
 	}
 	return $data;
 }
@@ -604,7 +604,7 @@ function setread2($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","�t�@�C�����J���܂���B�t�@�C�������݂��邩�A�t�@�C���̃p�[�~�b�V�������m�F���Ă��������B1");
+		errorprint("file open error","�t�@修正���J���܂���B�t�@修正�����݂��邩�A�t�@修正�̃p�[�~�b�V�������m�F���Ă��������B1");
 	}
 	return $data;
 }
@@ -621,7 +621,7 @@ function readtemp($filename) {
 		}
 		fclose($DAT);
 	} else{
-		errorprint("File Open Error!","�t�@�C�����J���܂���B");
+		errorprint("File Open Error!","�t�@修正���J���܂���B");
 	}
 	return $data;
 }
