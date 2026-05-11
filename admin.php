@@ -1,8 +1,6 @@
-<?php header("Content-Type: text/html;charset=Shift_JIS");?>
+<?php header("Content-Type: text/html");?>
 <?php
 mb_language("Japanese");
-mb_regex_encoding("SJIS");
-mb_internal_encoding("SJIS");
 
 ###########################################################################
 # スレッド掲示板1_PHP版 環境設定
