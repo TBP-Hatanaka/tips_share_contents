@@ -126,7 +126,7 @@ function mainprint(){
 					if(isset($p[6])){$p6 = $p[6];}
 					if(isset($p[7])){$p7 = $p[7];}
 					if($p3 == ""){
-						$p3 = "����������";
+						$p3 = " ";
 					}
 					if($p0 == $i8){
 						$logdata .= "<UL>\n<LI>\n";
