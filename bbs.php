@@ -660,7 +660,7 @@ function strtocode($str) {
 }
 
 function errorprint($title,$erstr) {
-	echo "<HTML>\n<HEAD>\n";
+	echo "<HTML>\n<meta charset="UTF-8">\n<HEAD>\n";
 	echo "<LINK rel=stylesheet href=cgigarage.css type=text/css>\n";
 	echo "<TITLE>$title</TITLE>\n";
 	echo "</HEAD>\n";
