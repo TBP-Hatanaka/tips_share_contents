@@ -1,8 +1,11 @@
-<?php header("Content-Type: text/html");?>
+<?php header("Content-Type: text/html;charset=Shift_JIS");?>
 <?php
+mb_language("Japanese");
+mb_regex_encoding("SJIS");
+mb_internal_encoding("SJIS");
 
 ###########################################################################
-# �X���b�h�f����1_PHP�� ���ݒ�
+# スレッド掲示板1_PHP版 環境設定
 # Ver3.0 PHP8.4
 # https://cgi-garage.com/
 ###########################################################################
@@ -27,11 +30,11 @@ if($mainset){
 }
 ###########################
 $print = "<TABLE border=1>\n"
-	   . "<TR>\n<TD bgcolor=#cccccc>���@�P�A�����ݒ�</TD>\n"
-	   . "<TD><INPUT type=submit name=mainset value=�����ݒ�ց@��></TD>\n"
+	   . "<TR>\n<TD bgcolor=#cccccc>◆　１、初期設定</TD>\n"
+	   . "<TD><INPUT type=submit name=mainset value=初期設定へ　⇒></TD>\n"
 	   . "<TD align=center rowspan=14><A href=\"javascript:help('admin')\"><B>HELP</B></A></TD>\n</TR>\n"
-	   . "<TR><TD bgcolor=#cccccc>���@�Q�A���O�t�@�C���ꗗ</TD>\n"
-	   . "<TD><INPUT type=submit name=itiran value='���O�t�@�C���ꗗ�ց@��'></TD>\n</TR>"
+	   . "<TR><TD bgcolor=#cccccc>◆　２、ログファイル一覧</TD>\n"
+	   . "<TD><INPUT type=submit name=itiran value='ログファイル一覧へ　⇒'></TD>\n</TR>"
 	   . "</TABLE>\n";
 
 $script = "<SCRIPT language='JavaScript'>\n<!--\n";
@@ -39,7 +42,7 @@ $script .= "function help(str){\n";
 $script .= "\tif(str == 'admin'){	window.open('./help/admin.html','','width=400,height=300,scrollbars');}\n";
 $script .= "}\n//-->\n</SCRIPT>";
 
-funcprint($script,'�X���b�h�f����1_PHP�Ł@���ݒ�',$print);
+funcprint($script,'スレッド掲示板1_PHP版　環境設定',$print);
 ################################################
 function itiran(){
 	global $set,$chstr,$backtime;
@@ -51,11 +54,11 @@ function itiran(){
 	$suuti = postget('suuti');
 	$dbase = setread2($set['logfilename']);
 	$list = array();
-	$koumoku = array('���e��','�z�X�g��','���O','�^�C�g��','���[���A�h���X','�z�[���y�[�W�A�h���X','�R�����g');
+	$koumoku = array('投稿日','ホスト名','名前','タイトル','メールアドレス','ホームページアドレス','コメント');
 
 	if($sort){
 		if($sortchange == ""){
-			errorprint("���̓G���[","�������~����I�����Ă��������B");
+			errorprint("入力エラー","昇順か降順を選択してください。");
 		}
 		$final = "";
 		$dbase2 = array();
@@ -174,7 +177,7 @@ function itiran(){
 		$end = $hyouji;
 	}
 
-	$print = "<P>���@���O����</P>���@���ڎw��@<select name=\"category\">\n";
+	$print = "<P>●　ログ検索</P>●　項目指定　<select name=\"category\">\n";
 	$frag = 0;
 	$count = 0;
 	foreach ($koumoku as $i){
@@ -190,13 +193,13 @@ function itiran(){
 	if($frag == 0){
 		$print .= " selected";
 	}
-	$print .= ">����</OPTION>\n"
+	$print .= ">無し</OPTION>\n"
 			. "</SELECT>\n"
-			. "�@����������<input type=text name=searchstr value=\"$searchstr2\"><BR>"
-			. "<INPUT TYPE=text name=hyouji value=\"$hyouji\" size=\"4\">������"
-			. "<input type=submit name=itiran value=\"�\��\"><BR><BR>\n"
+			. "　検索文字列<input type=text name=searchstr value=\"$searchstr2\"><BR>"
+			. "<INPUT TYPE=text name=hyouji value=\"$hyouji\" size=\"4\">件ずつ"
+			. "<input type=submit name=itiran value=\"表示\"><BR><BR>\n"
 			. "<HR>\n"
-			. "<P>���@�f�[�^�̃\�[�g</P>���@���ڎw��@<select name=\"sortcategory\">\n";
+			. "<P>●　データのソート</P>●　項目指定　<select name=\"sortcategory\">\n";
 	$frag = 0;
 	$count = 0;
 	foreach ($koumoku as $i){
@@ -212,23 +215,23 @@ function itiran(){
 	if($frag == 0){
 		$print .= " selected";
 	}
-	$print .= ">����</OPTION>\n</SELECT>\n�@"
+	$print .= ">無し</OPTION>\n</SELECT>\n　"
 			. "<input type=radio name=sortchange value=\"up\"";
 	if($sortchange == "up"){
 		$print .= " checked";
 	}
-	$print .= ">���� "
+	$print .= ">昇順 "
 			. "<INPUT TYPE=radio name=sortchange value=\"down\"";
 	if($sortchange == "down"){
 		$print .= " checked";
 	}
-	$print .= ">�~���@"
+	$print .= ">降順　"
 			. "<input type=checkbox name=suuti value=\"1\"";
 	if($suuti == "1"){
 		$print .= " checked";
 	}
-	$print .= ">���l�`���@"
-			. "<input type=submit name=sort value=\"�\�[�g����\"><BR><BR>\n"
+	$print .= ">数値形式　"
+			. "<input type=submit name=sort value=\"ソートする\"><BR><BR>\n"
 			. "<HR>\n"
 			. "[ <A href=\"javascript:help('itiran2')\"><B>HELP</B></A> ]<BR><BR>\n"
 			. "<TABLE border=1>\n";
@@ -236,8 +239,8 @@ function itiran(){
 	$hyoujicount = 0;
 	$kcount = "0";
 	$sobi = array();
-	$print .= "<TR><TD bgcolor=#cccccc nowrap align=center>DATA<BR>�ԍ�</TD>\n"
-			. "<TD bgcolor=#cccccc nowrap align=center>�폜</TD>\n";
+	$print .= "<TR><TD bgcolor=#cccccc nowrap align=center>DATA<BR>番号</TD>\n"
+			. "<TD bgcolor=#cccccc nowrap align=center>削除</TD>\n";
 	foreach ($koumoku as $p){
 		$print .= "<TD bgcolor=#cccccc nowrap>$p</TD>\n";
 		$kcount++;
@@ -275,22 +278,22 @@ function itiran(){
 	$count--;
 	if($hyoujicount == 0){
 		$listcount = $kcount + 2;
-		$print .= "<TR><TD colspan=$listcount align=center><B>�Y������f�[�^�͑��݂��܂���</B></TD></TR>\n";
+		$print .= "<TR><TD colspan=$listcount align=center><B>該当するデータは存在しません</B></TD></TR>\n";
 	}
 	$print .= "<TR><TD></TD>\n"
 			. "<TD><A href=\"javascript:help('itiran')\"><B>HELP</B></A></TD>\n"
-			. "<TD colspan='$kcount' align=center><INPUT type=submit name=delbtn value='�I�������f�[�^���폜'></TD></TR>\n"
+			. "<TD colspan='$kcount' align=center><INPUT type=submit name=delbtn value='選択したデータを削除'></TD></TR>\n"
 			. "</TABLE>\n"
 			. "<input type=hidden name=itiran value=aaa>";
 	$endnum = $end;
 	if($category != ""){
-		$print .= "<B>".$koumoku[$category]."</B> �� ";
+		$print .= "<B>".$koumoku[$category]."</B> に ";
 	} if($searchstr != ""){
-		$print .= "<B>$searchstr2</B> �̕��������������f�[�^ ";
+		$print .= "<B>$searchstr2</B> の文字が見つかったデータ ";
 	} if($end > $hyoujicount){
 		$endnum = $hyoujicount;
 	}
-	$print .= "<B>$hyoujicount</B> ���� <B>$start</B> �� �` <B>$endnum</B>���\��<BR><BR>\n";
+	$print .= "<B>$hyoujicount</B> 件中 <B>$start</B> 件 ～ <B>$endnum</B>件表示<BR><BR>\n";
 
 	$print .= linkstr($hyoujicount,$hyouji,$start,$end,$category,$searchstr);
 
@@ -300,15 +303,15 @@ function itiran(){
 	$script .= "\tif(str == 'itiran2'){	window.open('./help/itiran2.html','','width=400,height=400,scrollbars');}\n";
 	$script .= "}\n//-->\n</SCRIPT>";
 
-	funcprint($script,'�X���b�h�f����1_PHP�Ł@���O�t�@�C���ꗗ',$print);
+	funcprint($script,'スレッド掲示板1_PHP版　ログファイル一覧',$print);
 }
 
 function linkstr($hyoujicount,$hyouji,$start,$end,$category,$searchstr) {
 	global $set;
 	$frag = "0";
 	if($set['pattern'] == "1"){
-		$mae = "�y ";
-		$usiro = " �z";
+		$mae = "【 ";
+		$usiro = " 】";
 	} elseif($set['pattern'] == "2"){
 		$mae = "";
 		$usiro = "";
@@ -354,16 +357,16 @@ function linkstr($hyoujicount,$hyouji,$start,$end,$category,$searchstr) {
 				$code = strtocode($searchstr);
 				$befnum .= "&searchstr=$code";
 			}
-			$befnum .= "\"><B>&lt;&lt;�O��".$hyouji."��</B></A>�@";
+			$befnum .= "\"><B>&lt;&lt;前の".$hyouji."件</B></A>　";
 		} elseif( $i == ($nownum + 1) && $set['pagechange'] ){
-			$aftnum = "�@<A href=\"admin.php?itiran=aaa&start=$startnum&end=$endnum&hyouji=$hyouji";
+			$aftnum = "　<A href=\"admin.php?itiran=aaa&start=$startnum&end=$endnum&hyouji=$hyouji";
 			if($category != ""){
 				$aftnum .= "&category=$category";
 			} if($searchstr != ""){
 				$code = strtocode($searchstr);
 				$aftnum .= "&searchstr=$code";
 			}
-			$aftnum .= "\"><B>����".$hyouji."��&gt;&gt;</B></A>�@";
+			$aftnum .= "\"><B>次の".$hyouji."件&gt;&gt;</B></A>　";
 		}
 	}
 	$numstr2 = $befnum.$numstr.$aftnum;
@@ -394,8 +397,8 @@ function mainset(){
 		$hyouji = mb_convert_kana($hyouji,"n");
 		$logcount = mb_convert_kana($logcount,"n");
 		$pagechangecount = mb_convert_kana($pagechangecount,"n");
-		$exhost = preg_replace("/�@/"," ",$exhost);
-		$exstr = preg_replace("/�@/"," ",$exstr);
+		$exhost = preg_replace("/　/"," ",$exhost);
+		$exstr = preg_replace("/　/"," ",$exstr);
 
 		$setkey = array('pass','temp','logfilename','hyouji','logcount','exhost','exstr',
 						'erchk','path','pagechange','pagechangecount','pattern');
@@ -408,9 +411,9 @@ function mainset(){
 		}
 
 		if(mb_ereg("[^0-9]",$hyouji)){
-			errorprint('���̓G���[','�y�[�W���Ƃ̕\�������ɕs���ȕ����񂪓��͂���Ă��܂��B');
+			errorprint('入力エラー','ページごとの表示件数に不正な文字列が入力されています。');
 		} if(mb_ereg("[^0-9]",$logcount)){
-			errorprint('���̓G���[','���O�̕ۑ������ɕs���ȕ����񂪓��͂���Ă��܂��B');
+			errorprint('入力エラー','ログの保存件数に不正な文字列が入力されています。');
 		}
 		$setvalue = array($newpassword,$temp,$logfilename,$hyouji,$logcount,$exhost,$exstr,
 						$erchk,$path,$pagechange,$pagechangecount,$pattern);
@@ -420,64 +423,64 @@ function mainset(){
 	}
 
 	$print = "<TABLE border=1>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>���@�p�X���[�h�ύX</TD>\n"
-		   . "<TD>���݂̃p�X���[�h�@<INPUT size=20 type=password name=password><BR>"
-		   . "�ύX����p�X���[�h<INPUT size=20 type=password name=newpass></TD>\n"
+		   . "<TR>\n<TD bgcolor=#cccccc>◆　パスワード変更</TD>\n"
+		   . "<TD>現在のパスワード　<INPUT size=20 type=password name=password><BR>"
+		   . "変更するパスワード<INPUT size=20 type=password name=newpass></TD>\n"
 		   . "<TD rowspan=11><A href=\"javascript:help('mainset')\"><B>HELP</B></A></TD></TR>\n"
-		   . "<TR><TD bgcolor=#cccccc>���@�e���v���[�g�t�@�C����</TD>\n"
+		   . "<TR><TD bgcolor=#cccccc>◆　テンプレートファイル名</TD>\n"
 		   . "<TD><INPUT size=40 type=text name=temp value='".$set['temp']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>���@���O�t�@�C����</TD>\n"
+		   . "<TR>\n<TD bgcolor=#cccccc>◆　ログファイル名</TD>\n"
 		   . "<TD><INPUT size=20 type=text name=logfilename value='".$set['logfilename']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>���@�y�[�W���Ƃ̕\������</TD>\n"
-		   . "<TD><INPUT size=10 type=text name=hyouji value='".$set['hyouji']."' style=\"text-align : right;\">��</TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>���@���O�̕ۑ�����</TD>\n<TD>"
-		   . "<INPUT size=10 type=text name=logcount value='".$set['logcount']."' style=\"text-align : right;\">��</TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>���@���e�s�̃z�X�g��</TD>\n<TD>"
+		   . "<TR>\n<TD bgcolor=#cccccc>◆　ページごとの表示件数</TD>\n"
+		   . "<TD><INPUT size=10 type=text name=hyouji value='".$set['hyouji']."' style=\"text-align : right;\">件</TD>\n</TR>\n"
+		   . "<TR>\n<TD bgcolor=#cccccc>◆　ログの保存件数</TD>\n<TD>"
+		   . "<INPUT size=10 type=text name=logcount value='".$set['logcount']."' style=\"text-align : right;\">件</TD>\n</TR>\n"
+		   . "<TR>\n<TD bgcolor=#cccccc>◆　投稿不可のホスト名</TD>\n<TD>"
 		   . "<INPUT size=80 type=text name=exhost value='".$set['exhost']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>���@���e�s�̕�����</TD>\n<TD>"
+		   . "<TR>\n<TD bgcolor=#cccccc>◆　投稿不可の文字列</TD>\n<TD>"
 		   . "<INPUT size=80 type=text name=exstr value='".$set['exstr']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>���@�s���A�N�Z�X�`�F�b�N�����邽�߂̃p�X</TD>\n<TD>"
+		   . "<TR>\n<TD bgcolor=#cccccc>◆　不正アクセスチェックをするためのパス</TD>\n<TD>"
 		   . "<INPUT size=80 type=text name=path value='".$set['path']."'></TD>\n</TR>\n"
-		   . "<TR>\n<TD bgcolor=#cccccc>���@���e�`�F�b�N��</TD>\n<TD>"
+		   . "<TR>\n<TD bgcolor=#cccccc>◆　投稿チェックを</TD>\n<TD>"
 		   . "<INPUT type=radio name=erchk value='ON'";
 	if($set['erchk'] == "ON"){
 		$print.=" checked";
 	}
-	$print	 .= ">����\n"
+	$print	 .= ">する\n"
 			  . "<INPUT type=radio name=erchk value='OFF'";
 	if($set['erchk'] == "OFF"){
 		$print.=" checked";
 	}
-	$print	 .= ">���Ȃ�\n</TD>\n</TR>\n"
-			  . "<TR>\n<TD bgcolor=#cccccc>���@�y�[�W�ύX�p�����N������</TD>\n"
+	$print	 .= ">しない\n</TD>\n</TR>\n"
+			  . "<TR>\n<TD bgcolor=#cccccc>◆　ページ変更用リンク文字列</TD>\n"
 			  . "<TD><INPUT type=radio name=pagechange value=\"0\"";
 	if($set['pagechange'] != "1"){
 		$print .= " checked";
 	}
-	$print .= ">�S���\������<BR>\n"
+	$print .= ">全件表示する<BR>\n"
 			. "<input type=radio name=pagechange value=\"1\"";
 	if($set['pagechange'] == "1"){
 		$print .= " checked";
 	}
-	$print .= ">�O��<input type=text name=\"pagechangecount\" value=\"".$set['pagechangecount']."\" size=5 style=\"text-align : right;\">���\��</TD>\n</TR>\n"
-			. "<TR>\n<TD bgcolor=#cccccc>���@�����N������̕\���p�^�[��</TD>\n"
+	$print .= ">前後<input type=text name=\"pagechangecount\" value=\"".$set['pagechangecount']."\" size=5 style=\"text-align : right;\">件表示</TD>\n</TR>\n"
+			. "<TR>\n<TD bgcolor=#cccccc>◆　リンク文字列の表示パターン</TD>\n"
 			. "<TD><INPUT type=radio name=pattern value=\"0\"";
 	if($set['pattern'] == "" || $set['pattern'] == "0"){
 		$print .= " checked";
 	}
-	$print .= "> �@ [ <B>1</B> ] [ <A>2</A> ] [ <A>3</A> ]<BR>\n"
+	$print .= "> 　 [ <B>1</B> ] [ <A>2</A> ] [ <A>3</A> ]<BR>\n"
 			. "<input type=radio name=pattern value=\"1\"";
 	if($set['pattern'] == "1"){
 		$print .= " checked";
 	}
-	$print .= "> �@ �y <B>1</B> �z �y <A>2</A> �z �y <A>3</A> �z<BR>\n"
+	$print .= "> 　 【 <B>1</B> 】 【 <A>2</A> 】 【 <A>3</A> 】<BR>\n"
 			. "<input type=radio name=pattern value=\"2\"";
 	if($set['pattern'] == "2"){
 		$print .= " checked";
 	}
-	$print .= "> �@ <B>1</B> <A>2</A> <A>3</A>\n"
+	$print .= "> 　 <B>1</B> <A>2</A> <A>3</A>\n"
 			. "</TD></TR>\n"
-			. "<TR>\n<TD colspan=3 align=center><INPUT type=submit name=henkou value='�ݒ��ύX����'></TD>\n</TR>\n"
+			. "<TR>\n<TD colspan=3 align=center><INPUT type=submit name=henkou value='設定を変更する'></TD>\n</TR>\n"
 			. "<INPUT type=hidden name=mainset value=aaa>\n"
 			. "</TABLE>\n";
 
@@ -486,7 +489,7 @@ function mainset(){
 	$script .= "\tif(str == 'mainset'){	window.open('./help/mainset.html','','width=400,height=400,scrollbars');}\n";
 	$script .= "}\n//-->\n</SCRIPT>";
 
-	funcprint($script,'�X���b�h�f����1_PHP�Ł@�����ݒ�',$print);
+	funcprint($script,'スレッド掲示板1_PHP版　初期設定',$print);
 }
 
 ##################################################################################
@@ -510,15 +513,15 @@ function funcprint($scr,$title,$pr) {
 function passchange($oldpass,$newpass) {
 	global $set;
 	if($oldpass == "" && $set['pass']){
-		errorprint('���̓G���[','���݂̃p�X���[�h�̍��ڂ����͂���Ă��܂���');
+		errorprint('入力エラー','現在のパスワードの項目が入力されていません');
 	} if($newpass == ""){
-		errorprint('���̓G���[','�ύX����p�X���[�h�̍��ڂ����͂���Ă��܂���');
+		errorprint('入力エラー','変更するパスワードの項目が入力されていません');
 	
 	}
 	$cnewpass = crypt($newpass,'ps');
 	$coldpass = crypt($oldpass,'ps');
 	if($set['pass'] != $coldpass && $set['pass']){
-		errorprint('���̓G���[','�p�X���[�h���Ⴂ�܂��B���͂��Ȃ����Ă��������B');
+		errorprint('入力エラー','パスワードが違います。入力しなおしてください。');
 	}
 	setcookie("pass",$cnewpass);
 	$set['pass'] = $cnewpass;
@@ -539,12 +542,12 @@ function setchange($setfile,$key,$value) {
 		fwrite($SET,$data);
 		fclose($SET);
 	} elseif(file_exists($setfile)){
-		errorprint('file Open Error!',"�t�@�C���̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B-> $setfile");
+		errorprint('file Open Error!',"ファイルの書き込みが出来ません。パーミッションを確認してみてください。-> $setfile");
 	} else{
-		errorprint('file Open Error!',"�t�@�C�������݂��܂���B<BR>��̃t�@�C�����蓮�ō쐬���Ă��������B-> $setfile");
+		errorprint('file Open Error!',"ファイルが存在しません。<BR>空のファイルを手動で作成してください。-> $setfile");
 	}
 
-	$chstr = "�ݒ��ύX���܂����B";
+	$chstr = "設定を変更しました。";
 }
 
 function setchange2($changestr,$changefile) {
@@ -555,11 +558,11 @@ function setchange2($changestr,$changefile) {
 		fwrite($SET,$changestr);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","�t�@�C���̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B-> $changefile");
+		errorprint("file Open Error!","ファイルの書き込みが出来ません。パーミッションを確認してみてください。-> $changefile");
 	} else{
-		errorprint('file Open Error!',"�t�@�C�������݂��܂���B<BR>��̃t�@�C�����蓮�ō쐬���Ă��������B-> $changefile");
+		errorprint('file Open Error!',"ファイルが存在しません。<BR>空のファイルを手動で作成してください。-> $changefile");
 	}
-	$chstr = "�ݒ��ύX���܂����B";
+	$chstr = "設定を変更しました。";
 }
 
 function setchange3($changelist,$changefile){
@@ -570,11 +573,11 @@ function setchange3($changelist,$changefile){
 		fwrite($SET,$changelist);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","�t�@�C���̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B-> $changefile");
+		errorprint("file Open Error!","ファイルの書き込みが出来ません。パーミッションを確認してみてください。-> $changefile");
 	} else{
-		errorprint('file Open Error!',"�t�@�C�������݂��܂���B<BR>��̃t�@�C�����蓮�ō쐬���Ă��������B-> $changefile");
+		errorprint('file Open Error!',"ファイルが存在しません。<BR>空のファイルを手動で作成してください。-> $changefile");
 	}
-	$chstr = "�ݒ��ύX���܂����B";
+	$chstr = "設定を変更しました。";
 }
 
 function setread($filename) {
@@ -594,7 +597,7 @@ function setread($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","�t�@�C�����J���܂���B�t�@�C�������݂��邩�A�t�@�C���̃p�[�~�b�V�������m�F���Ă��������B-> $filename");
+		errorprint("file open error","ファイルが開けません。ファイルが存在するか、ファイルのパーミッションを確認してください。-> $filename");
 	}
 	return $data;
 }
@@ -613,7 +616,7 @@ function setread2($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","�t�@�C�����J���܂���B�t�@�C�������݂��邩�A�t�@�C���̃p�[�~�b�V�������m�F���Ă��������B-> $filename");
+		errorprint("file open error","ファイルが開けません。ファイルが存在するか、ファイルのパーミッションを確認してください。-> $filename");
 	}
 	return $data;
 }
@@ -630,7 +633,7 @@ function readtemp($filename) {
 		}
 		fclose($DAT);
 	} else{
-		errorprint("File Open Error!","�t�@�C�����J���܂���B");
+		errorprint("File Open Error!","ファイルが開けません。");
 	}
 	return $data;
 }
@@ -655,7 +658,7 @@ function auth() {
 	}
 	if($clear != 1){
 		if($inpass){
-			$error = "<FONT color='red'>�p�X���[�h����v���܂���I</FONT>";
+			$error = "<FONT color='red'>パスワードが一致しません！</FONT>";
 		}
 		$temp = readtemp("temp/admin.html");
 		$temp = preg_replace("/<!--ERROR-->/",$error,$temp);

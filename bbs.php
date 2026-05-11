@@ -1,12 +1,15 @@
-<?php header("Content-Type: text/html");?>
+<?php header("Content-Type: text/html;charset=Shift_JIS");?>
 <?php
+mb_language("Japanese");
+mb_regex_encoding("SJIS");
+mb_internal_encoding("SJIS");
 
 ###########################################################################
-# �X���b�h�f����1_PHP��
+# スレッド掲示板1_PHP版
 # Ver3.0 PHP8.4
 # https://cgi-garage.com/
 ###########################################################################
-$listmark = array("","��","��","��","��","��","��","��","��","��");
+$listmark = array("","◆","◇","■","□","●","○","◎","★","☆");
 $remaddr = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 if($remaddr == ""){
 	$remaddr = "-";
@@ -43,17 +46,17 @@ function mainprint(){
 
 	$form = "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n"
 		  . "<TABLE border=\"1\">\n"
-		  . "<TR><TD>名前</TD>\n"
+		  . "<TR><TD>お名前</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"name\"></TD></TR>\n"
-		  . "<TR><TD>題名</TD>\n"
+		  . "<TR><TD>タイトル</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title\"></TD></TR>\n"
 		  . "<TR><TD>メールアドレス</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail\"></TD></TR>\n"
-		  . "<TR><TD>URL</TD>\n"
+		  . "<TR><TD>ホームページアドレス</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home\" value=\"https://\"></TD></TR>\n"
-		  . "<TR><TD>内容</TD>\n"
+		  . "<TR><TD>コメント</TD>\n"
 		  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment\"></TEXTAREA></TD></TR>\n"
-		  . "<TR><TD colspan=\"2\" align=center>削除・編集パスワード<input type=password name=delpass size=10>　　\n"
+		  . "<TR><TD colspan=\"2\" align=center>修正・削除パスワード：<input type=password name=delpass size=10>　　\n"
 		  . "<input type=submit name=submit value=\"投稿する\"></TD></TR>\n"
 		  . "</TABLE>\n"
 		  . "</FORM>\n";
@@ -88,7 +91,7 @@ function mainprint(){
 			if(isset($i[8])){$i8 = $i[8];}
 			$i6 = preg_replace("/<!KAIGYOU>/","<BR>",$i6);
 			if($i2 == ""){
-				$i2 = "　";
+				$i2 = "名無しさん";
 			}
 			$logdata .= "<HR>\n";
 			$logdata .= "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n";
@@ -99,7 +102,7 @@ function mainprint(){
 			if($i[4]){
 				$logdata .= "</A>";
 			}
-			$logdata .= "　<B>".$i3."</B>　投稿日時".$i0."　ホスト名".$i1."\n"
+			$logdata .= "　　<B>".$i3."</B>　　投稿日時：".$i0."　　ホスト名：".$i1."\n"
 					  . "<input type=submit name=\"hensin\" value=\"返信\"><BR><BR>\n"
 					  . "$i6<BR>\n";
 			if($i[5]){
@@ -110,7 +113,7 @@ function mainprint(){
 					  . "<option value=1>修正</option>\n"
 					  . "<option value=2>削除</option>\n"
 					  . "</select>\n"
-					  . "<input type=submit name=del value=\"実行する\">\n"
+					  . "<input type=submit name=del value=\"実行\">\n"
 					  . "<input type=hidden name=lognum value=\"".$i8."\"></FORM>\n";
 			foreach ($leslog as $q){
 				if($q){
@@ -126,7 +129,7 @@ function mainprint(){
 					if(isset($p[6])){$p6 = $p[6];}
 					if(isset($p[7])){$p7 = $p[7];}
 					if($p3 == ""){
-						$p3 = " ";
+						$p3 = "名無しさん";
 					}
 					if($p0 == $i8){
 						$logdata .= "<UL>\n<LI>\n";
@@ -138,7 +141,7 @@ function mainprint(){
 							$logdata .= "</A>";
 						}
 						$p7 = preg_replace("/<!KAIGYOU>/","<BR>",$p7);
-						$logdata .= "　<B>$p4</B>　投稿日時：".$p1."　ホスト名：".$p2."<BR>\n"
+						$logdata .= "　　<B>$p4</B>　　投稿日時：".$p1."　　ホスト名：".$p2."<BR>\n"
 								  . "$p7";
 						if($p6){
 							$logdata .= "<BR><BR>\n<A href=\"$p6\">$p6</A>\n";
@@ -151,7 +154,7 @@ function mainprint(){
 		$count++;
 	}
 	if($logdata == ""){
-		$logdata .= "まだ投稿がありません。";
+		$logdata .= "まだ投稿されたデータがありません。";
 	}
 
 	$print = preg_replace("/<!--FORM-->/",$form,$print);
@@ -172,8 +175,8 @@ function linkstr($hyoujicount,$hyouji,$start,$end,$searchstr) {
 	$mae = "";
 	$usiro = "";
 	if($set['pattern'] == "1"){
-		$mae = "�y ";
-		$usiro = " �z";
+		$mae = "【 ";
+		$usiro = " 】";
 	} elseif($set['pattern'] == "2"){
 		$mae = "";
 		$usiro = "";
@@ -212,14 +215,14 @@ function linkstr($hyoujicount,$hyouji,$start,$end,$searchstr) {
 				$code = strtocode($searchstr);
 				$befnum .= "&searchstr=$code";
 			}
-			$befnum .= "\"><B>&lt;&lt;�O��".$hyouji."��</B></A>�@";
+			$befnum .= "\"><B>&lt;&lt;前の".$hyouji."件</B></A>　";
 		} elseif( $i == ($nownum + 1) && $set['pagechange'] ){
-			$aftnum = "�@<A href=\"bbs.php?start=$startnum&end=$endnum&hyouji=$hyouji";
+			$aftnum = "　<A href=\"bbs.php?start=$startnum&end=$endnum&hyouji=$hyouji";
 			if($searchstr != ""){
 				$code = strtocode($searchstr);
 				$aftnum .= "&searchstr=$code";
 			}
-			$aftnum .= "\"><B>����".$hyouji."��&gt;&gt;</B></A>�@";
+			$aftnum .= "\"><B>次の".$hyouji."件&gt;&gt;</B></A>　";
 		}
 	}
 	$numstr2 = $befnum.$numstr.$aftnum;
@@ -262,7 +265,7 @@ function del(){
 				}
 				fclose($LOGS);
 			} else{
-				errorprint('file open error!',"�X���b�h�t�@修正���J���܂���B�f�[�^�̍폜���o���܂���B");		
+				errorprint('file open error!',"スレッドファイルが開けません。データの削除が出来ません。");		
 			}
 			setchange3($newlog,$set['logfilename']);
 			setchange3($newles,'les.cgi');
@@ -271,22 +274,22 @@ function del(){
 		} elseif($logs[7] == $delpass && $delcom == "1"){
 			$print = readtemp($set['temp']);
 			$logs[6] = preg_replace("/<!KAIGYOU>/","\n",$logs[6]);
-			$form = "<B>�f�[�^�̏C��</B><BR><BR>\n"
+			$form = "<B>データの修正</B><BR><BR>\n"
 				  . "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n"
 				  . "<TABLE border=\"1\">\n"
-				  . "<TR><TD>名前</TD>\n"
+				  . "<TR><TD>お名前</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"name\" value=\"$logs[2]\"></TD></TR>\n"
-				  . "<TR><TD>題名</TD>\n"
+				  . "<TR><TD>タイトル</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title\" value=\"$logs[3]\"></TD></TR>\n"
 				  . "<TR><TD>メールアドレス</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail\" value=\"$logs[4]\"></TD></TR>\n"
-				  . "<TR><TD>URL</TD>\n"
+				  . "<TR><TD>ホームページアドレス</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home\" value=\"$logs[5]\"></TD></TR>\n"
 				  . "<TR><TD>コメント</TD>\n"
 				  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment\">$logs[6]</TEXTAREA></TD></TR>\n"
-				  . "<TR><TD>修正・削除パスワード</TD>\n"
+				  . "<TR><TD>修正･削除パスワード</TD>\n"
 				  . "<TD><input type=password name=delpass value=\"$logs[7]\" size=10></TD></TR>\n"
-				  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit value=\"投稿\"></TD></TR>\n"
+				  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit value=\"修正する\"></TD></TR>\n"
 				  . "</TABLE>\n"
 				  . "<input type=hidden name=delcom value=\"1\">\n"
 				  . "<input type=hidden name=lognum value=\"$lognum\">\n"
@@ -297,7 +300,7 @@ function del(){
 			echo $print;
 			exit;
 		} elseif($logs[7] != $delpass){
-			errorprint('修正�E削除���ł��܂���',"�p�X���[�h����v���܂���B");
+			errorprint('修正・削除をできません',"パスワードが一致しません。");
 		}
 	}
 }
@@ -346,17 +349,17 @@ function hensin(){
 		  . "<CENTER>\n"
 		  . "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n"
 		  . "<TABLE border=\"1\">"
-		  . "<TR><TD>名前</TD>\n"
+		  . "<TR><TD>お名前</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"name2\"></TD></TR>\n"
-		  . "<TR><TD>題名</TD>\n"
+		  . "<TR><TD>タイトル</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title2\" value=\"RE,$relog[3]\"></TD></TR>\n"
 		  . "<TR><TD>メールアドレス</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail2\"></TD></TR>\n"
-		  . "<TR><TD>URL</TD>\n"
+		  . "<TR><TD>ホームページアドレス</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home2\" value=\"https://\"></TD></TR>\n"
-		  . "<TR><TD>内容</TD>\n"
+		  . "<TR><TD>コメント</TD>\n"
 		  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment2\"></TEXTAREA></TD></TR>\n"
-		  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit2 value=\"返信する\"></TD></TR>\n"
+		  . "<TR><TD colspan=\"2\" align=center><input type=submit name=submit2 value=\"投稿する\"></TD></TR>\n"
 		  . "<input type=hidden name=hensin value=aaa>\n"
 		  . "<input type=hidden name=lognum value=\"$lognum\">\n"
 		  . "</TABLE>\n"
@@ -409,7 +412,7 @@ function submit(){
 				$newlog = $i[0]."\t".$rehost."\t".$name."\t".$title."\t".$mail."\t".$home."\t".$comment."\t".$delpass."\n";
 				$newlogs .= $newlog;
 			} elseif($count == $lognum && $i[7] != $delpass2){
-				errorprint('�L���̏C�����o���܂���B','�p�X���[�h����v���܂���B');
+				errorprint('記事の修正を出来ません。','パスワードが一致しません。');
 			} else{
 				array_pop($i);
 				$newlogs .= implode("\t",$i) . "\n";
@@ -447,7 +450,7 @@ function submit(){
 			fwrite($SET,$backlog);
 			fclose($SET);
 		} else{
-			errorprint("file Open Error!","�t�@修正�̃o�b�N�A�b�v���o���܂���B<BR>log �f�B���N�g���̃p�[�~�b�V�������m�F���Ă��������B");
+			errorprint("file Open Error!","ファイルのバックアップが出来ません。<BR>log ディレクトリのパーミッションを確認してください。");
 		}
 		setchange3($newlog,$set['logfilename']);
 
@@ -459,7 +462,7 @@ function submit(){
 			fwrite($SET,$lesdat);
 			fclose($SET);
 		} else{
-			errorprint("file Open Error!","�t�@修正�̃o�b�N�A�b�v���o���܂���B<BR>log �f�B���N�g���̃p�[�~�b�V�������m�F���Ă��������B");
+			errorprint("file Open Error!","ファイルのバックアップが出来ません。<BR>log ディレクトリのパーミッションを確認してください。");
 		}
 	}
 }
@@ -472,30 +475,30 @@ function erchk($nm,$tt,$ml,$hm,$cm,$dc) {
 		$exhost = explode(" ",$set['exhost']);
 		foreach ($exhost as $i){
 			if(mb_ereg("$i",$rehost)){
-				errorprint('���e�G���[','���e�ł��܂���B');
+				errorprint('投稿エラー','投稿できません。');
 			}
 		}
 	} if($set['exstr']){
 		$exstr = explode(" ",$set['exstr']);
 		foreach ($exstr as $i){
 			if(mb_ereg($i,$cm) || mb_ereg("$i",$nm) || mb_ereg("$i",$tt) || mb_ereg("$i",$ml) || mb_ereg("$i",$hm)){
-				errorprint('���e�G���[','���e�ł��Ȃ������񂪓��͂���Ă��܂��B');
+				errorprint('投稿エラー','投稿できない文字列が入力されています。');
 			}
 		}
 	} if($set['erchk'] == "ON"){
 		$str = $nm." ".$tt." ".$ml." ".$hm." ".$cm;
 		if($tt == "" || $cm == ""){
-			errorprint('���e�G���[','�^�C�g���ƃR�����g�͕K�{���ڂł��B');
+			errorprint('投稿エラー','タイトルとコメントは必須項目です。');
 		} if(mb_ereg("<(.+)>",$str)){
-			errorprint('���e�G���[','HTML�^�O�͂����܂���B');
+			errorprint('投稿エラー','HTMLタグはつかえません。');
 		} if(!mb_ereg("[^(a-zA-Z0-9\\\|\^\~\-\=\)\(\'\&\%\$\#\"\!\ \[\]\{\}\@\`\:\;\*\+\_\/\?\.\>\,\<\s\t\r\n)]",$str)){
-			errorprint('���e�G���[',"���e�ł��܂���");
+			errorprint('投稿エラー',"投稿できません");
 		} if($set['path'] && !mb_ereg($set['path'],$ref)){
-			errorprint('���e�G���[','�s���ȃA�N�Z�X�ł��B');
+			errorprint('投稿エラー','不正なアクセスです。');
 		} if(!mb_ereg("^(.+)\@(.+)\.(.+)$",$ml) && $ml){
-			errorprint('���e�G���[','���[���A�h���X���s���ł��B');
+			errorprint('投稿エラー','メールアドレスが不正です。');
 		} if($rehost == "-"){
-			errorprint('���e�G���[','�����[�g�z�X�g����\�����Ă��������B');
+			errorprint('投稿エラー','リモートホスト名を表示してください。');
 		}
 	}
 	$cm = preg_replace("/\r\n|\r|\n/","<!KAIGYOU>",$cm);
@@ -504,7 +507,7 @@ function erchk($nm,$tt,$ml,$hm,$cm,$dc) {
 		if($nm == $fl[2] && $rehost == $fl[1] && $tt == $fl[3] && $ml == $fl[4] &&
 			(($hm == "https://" && $fl[5] == "") || ($hm && $fl[5] && $hm == $fl[5])) &&
 			$cm == $fl[6]){
-				errorprint('���e�G���[','��d���e�ł��B'."<BR> $finallog");
+				errorprint('投稿エラー','二重投稿です。'."<BR> $finallog");
 		}
 	}
 }
@@ -523,12 +526,12 @@ function setchange($setfile,$key,$value) {
 		fwrite($SET,$data);
 		fclose($SET);
 	} elseif(file_exists($setfile)){
-		errorprint('file Open Error!',"�t�@修正�̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B8");
+		errorprint('file Open Error!',"ファイルの書き込みが出来ません。パーミッションを確認してみてください。8");
 	} else{
-		errorprint('file Open Error!',"�t�@修正�����݂��܂���B<BR>��̃t�@修正���蓮�ō쐬���Ă��������B7");
+		errorprint('file Open Error!',"ファイルが存在しません。<BR>空のファイルを手動で作成してください。7");
 	}
 
-	$chstr = "�ݒ��ύX���܂����B";
+	$chstr = "設定を変更しました。";
 }
 
 function setchange2($changestr,$changefile) {
@@ -539,11 +542,11 @@ function setchange2($changestr,$changefile) {
 		fwrite($SET,$changestr);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","�t�@修正�̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B6");
+		errorprint("file Open Error!","ファイルの書き込みが出来ません。パーミッションを確認してみてください。6");
 	} else{
-		errorprint('file Open Error!',"�t�@修正�����݂��܂���B<BR>��̃t�@修正���蓮�ō쐬���Ă��������B5");
+		errorprint('file Open Error!',"ファイルが存在しません。<BR>空のファイルを手動で作成してください。5");
 	}
-	$chstr = "�ݒ��ύX���܂����B";
+	$chstr = "設定を変更しました。";
 }
 
 function setchange3($changelist,$changefile){
@@ -554,11 +557,11 @@ function setchange3($changelist,$changefile){
 		fwrite($SET,$changelist);
 		fclose($SET);
 	} elseif(file_exists($changefile)){
-		errorprint("file Open Error!","�t�@修正�̏������݂��o���܂���B�p�[�~�b�V�������m�F���Ă݂Ă��������B4");
+		errorprint("file Open Error!","ファイルの書き込みが出来ません。パーミッションを確認してみてください。4");
 	} else{
-		errorprint('file Open Error!',"�t�@修正�����݂��܂���B<BR>��̃t�@修正���蓮�ō쐬���Ă��������B3");
+		errorprint('file Open Error!',"ファイルが存在しません。<BR>空のファイルを手動で作成してください。3");
 	}
-	$chstr = "�ݒ��ύX���܂����B";
+	$chstr = "設定を変更しました。";
 }
 
 function setread($filename) {
@@ -578,7 +581,7 @@ function setread($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","�t�@修正���J���܂���B�t�@修正�����݂��邩�A�t�@修正�̃p�[�~�b�V�������m�F���Ă��������B2");
+		errorprint("file open error","ファイルが開けません。ファイルが存在するか、ファイルのパーミッションを確認してください。2");
 	}
 	return $data;
 }
@@ -604,7 +607,7 @@ function setread2($filename) {
 		}
 		fclose($LOGS);
 	} else{
-		errorprint("file open error","�t�@修正���J���܂���B�t�@修正�����݂��邩�A�t�@修正�̃p�[�~�b�V�������m�F���Ă��������B1");
+		errorprint("file open error","ファイルが開けません。ファイルが存在するか、ファイルのパーミッションを確認してください。1");
 	}
 	return $data;
 }
@@ -621,7 +624,7 @@ function readtemp($filename) {
 		}
 		fclose($DAT);
 	} else{
-		errorprint("File Open Error!","�t�@修正���J���܂���B");
+		errorprint("File Open Error!","ファイルが開けません。");
 	}
 	return $data;
 }
