@@ -60,23 +60,31 @@ function mainprint(){
 		  . "</FORM>\n";
 
 	$logdata = "";
-	$leng = count($log_file);
 	$hyouji = $set['hyouji'];
 	$start = postget('start');
 	$end = postget('end');
+	$searchstr = trim(postget('searchstr'));
 	if($start == "" || $start == "0"){
 		$start = 1;
 		$end = $hyouji;
 	} if($end == ""){
 		$end = 10;
 	}
-	$threadindex = buildthreadindex($log_file,$hyouji,$leng);
-	if($threadindex != ""){
-		$logdata .= $threadindex . "<HR>\n";
-	}
-	$logdata .= linkstr($leng,$hyouji,$start,$end,''); 
 
 	$leslog = setread2('les.cgi');
+	if($searchstr != ""){
+		$log_file = filterthreadlogs($log_file,$leslog,$searchstr);
+	}
+	$leng = count($log_file);
+	$logdata .= buildsearchform($searchstr);
+	if($leng > 0){
+		$threadindex = buildthreadindex($log_file,$hyouji,$leng,$searchstr);
+		if($threadindex != ""){
+			$logdata .= $threadindex . "<HR>\n";
+		}
+		$logdata .= linkstr($leng,$hyouji,$start,$end,$searchstr); 
+	}
+
 	$count = 1;
 	foreach ($log_file as $k){
 		if($count >= $start && $end >= $count){
@@ -156,7 +164,9 @@ function mainprint(){
 		}
 		$count++;
 	}
-	if($logdata == ""){
+	if($leng == 0 && $searchstr != ""){
+		$logdata .= "検索結果はありません。";
+	} elseif($leng == 0){
 		$logdata .= "まだ投稿されたデータがありません。";
 	}
 
@@ -167,7 +177,57 @@ function mainprint(){
 	exit;
 }
 
-function buildthreadindex($log_file,$hyouji,$leng){
+function buildsearchform($searchstr){
+	$searchvalue = htmlspecialchars($searchstr,ENT_QUOTES,'UTF-8');
+	$searchform = "<DIV><FORM ACTION=\"bbs.php\" METHOD=\"GET\">\n"
+				. "ログ検索：<INPUT type=\"text\" name=\"searchstr\" size=\"30\" value=\"".$searchvalue."\">\n"
+				. "<INPUT type=\"submit\" value=\"検索\">\n";
+	if($searchstr != ""){
+		$searchform .= "<A href=\"bbs.php\">解除</A>\n";
+	}
+	$searchform .= "</FORM></DIV>\n<HR>\n";
+
+	return $searchform;
+}
+
+function filterthreadlogs($log_file,$leslog,$searchstr){
+	$newlog = array();
+
+	foreach ($log_file as $k){
+		if(threadmatch($k,$leslog,$searchstr)){
+			array_push($newlog,$k);
+		}
+	}
+
+	return $newlog;
+}
+
+function threadmatch($threadlog,$leslog,$searchstr){
+	$threadstr = preg_replace("/<!KAIGYOU>/"," ",$threadlog);
+	if(mb_stripos($threadstr,$searchstr) !== false){
+		return true;
+	}
+
+	$i = explode("\t",$threadlog);
+	$lognum = "";
+	if(isset($i[8])){$lognum = $i[8];}
+	foreach ($leslog as $q){
+		if($q == ""){
+			continue;
+		}
+		$p = explode("\t",$q);
+		if(isset($p[0]) && $p[0] == $lognum){
+			$replystr = preg_replace("/<!KAIGYOU>/"," ",$q);
+			if(mb_stripos($replystr,$searchstr) !== false){
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+function buildthreadindex($log_file,$hyouji,$leng,$searchstr){
 	if($leng == 0){
 		return "";
 	}
@@ -201,7 +261,11 @@ function buildthreadindex($log_file,$hyouji,$leng){
 		$title = htmlspecialchars($title,ENT_QUOTES,'UTF-8');
 		$name = htmlspecialchars($name,ENT_QUOTES,'UTF-8');
 		$date = htmlspecialchars($date,ENT_QUOTES,'UTF-8');
-		$threadindex .= "・<A href=\"bbs.php?start=".$startnum."&end=".$endnum."#thread-".$lognum."\">".$title."</A>";
+		$threadindex .= "・<A href=\"bbs.php?start=".$startnum."&end=".$endnum;
+		if($searchstr != ""){
+			$threadindex .= "&searchstr=".strtocode($searchstr);
+		}
+		$threadindex .= "#thread-".$lognum."\">".$title."</A>";
 		$threadindex .= " <SPAN>(".$name." / ".$date.")</SPAN><BR>\n";
 		$count++;
 	}
