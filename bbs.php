@@ -50,7 +50,7 @@ function mainprint(){
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title\"></TD></TR>\n"
 		  . "<TR><TD>メールアドレス</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail\"></TD></TR>\n"
-		  . "<TR><TD>ホームページアドレス</TD>\n"
+		  . "<TR><TD>URL</TD>\n"
 		  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home\" value=\"https://\"></TD></TR>\n"
 		  . "<TR><TD>コメント</TD>\n"
 		  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment\"></TEXTAREA></TD></TR>\n"
@@ -69,6 +69,10 @@ function mainprint(){
 		$end = $hyouji;
 	} if($end == ""){
 		$end = 10;
+	}
+	$threadindex = buildthreadindex($log_file,$hyouji,$leng);
+	if($threadindex != ""){
+		$logdata .= $threadindex . "<HR>\n";
 	}
 	$logdata .= linkstr($leng,$hyouji,$start,$end,''); 
 
@@ -91,6 +95,7 @@ function mainprint(){
 			if($i2 == ""){
 				$i2 = "名無しさん";
 			}
+			$logdata .= "<A id=\"thread-".$i8."\" name=\"thread-".$i8."\"></A>\n";
 			$logdata .= "<HR>\n";
 			$logdata .= "<FORM ACTION=\"bbs.php\" METHOD=\"POST\">\n";
 			if($i4){
@@ -160,6 +165,49 @@ function mainprint(){
 
 	echo $print;
 	exit;
+}
+
+function buildthreadindex($log_file,$hyouji,$leng){
+	if($leng == 0){
+		return "";
+	}
+
+	$threadindex = "<DIV><B>スレッド一覧</B><BR>\n";
+	$count = 1;
+	foreach ($log_file as $k){
+		$i = explode("\t",$k);
+		$title = "";
+		$name = "";
+		$date = "";
+		$lognum = "";
+		if(isset($i[0])){$date = $i[0];}
+		if(isset($i[2])){$name = $i[2];}
+		if(isset($i[3])){$title = $i[3];}
+		if(isset($i[8])){$lognum = $i[8];}
+		if($title == ""){
+			$title = "タイトル未設定";
+		}
+		if($name == ""){
+			$name = "名無しさん";
+		}
+
+		$page = floor(($count - 1) / $hyouji);
+		$startnum = $page * $hyouji + 1;
+		$endnum = $startnum + $hyouji - 1;
+		if($endnum > $leng){
+			$endnum = $leng;
+		}
+
+		$title = htmlspecialchars($title,ENT_QUOTES,'UTF-8');
+		$name = htmlspecialchars($name,ENT_QUOTES,'UTF-8');
+		$date = htmlspecialchars($date,ENT_QUOTES,'UTF-8');
+		$threadindex .= "・<A href=\"bbs.php?start=".$startnum."&end=".$endnum."#thread-".$lognum."\">".$title."</A>";
+		$threadindex .= " <SPAN>(".$name." / ".$date.")</SPAN><BR>\n";
+		$count++;
+	}
+	$threadindex .= "</DIV>\n";
+
+	return $threadindex;
 }
 ################################################################################
 function linkstr($hyoujicount,$hyouji,$start,$end,$searchstr) {
@@ -281,7 +329,7 @@ function del(){
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"title\" value=\"$logs[3]\"></TD></TR>\n"
 				  . "<TR><TD>メールアドレス</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"mail\" value=\"$logs[4]\"></TD></TR>\n"
-				  . "<TR><TD>ホームページアドレス</TD>\n"
+				  . "<TR><TD>URL</TD>\n"
 				  . "<TD><INPUT size=\"50\" type=\"text\" name=\"home\" value=\"$logs[5]\"></TD></TR>\n"
 				  . "<TR><TD>コメント</TD>\n"
 				  . "<TD><TEXTAREA rows=\"8\" cols=\"50\" name=\"comment\">$logs[6]</TEXTAREA></TD></TR>\n"
