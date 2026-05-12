@@ -40,7 +40,7 @@ $script .= "function help(str){\n";
 $script .= "\tif(str == 'admin'){	window.open('./help/admin.html','','width=400,height=300,scrollbars');}\n";
 $script .= "}\n//-->\n</SCRIPT>";
 
-funcprint($script,'スレッド掲示板1_PHP版　環境設定',$print);
+funcprint($script,'TBPD_何でも共有掲示板　環境設定',$print);
 ################################################
 function itiran(){
 	global $set,$chstr,$backtime;
@@ -301,7 +301,7 @@ function itiran(){
 	$script .= "\tif(str == 'itiran2'){	window.open('./help/itiran2.html','','width=400,height=400,scrollbars');}\n";
 	$script .= "}\n//-->\n</SCRIPT>";
 
-	funcprint($script,'スレッド掲示板1_PHP版　ログファイル一覧',$print);
+	funcprint($script,'TBPD_何でも共有掲示板　ログファイル一覧',$print);
 }
 
 function linkstr($hyoujicount,$hyouji,$start,$end,$category,$searchstr) {
@@ -487,7 +487,7 @@ function mainset(){
 	$script .= "\tif(str == 'mainset'){	window.open('./help/mainset.html','','width=400,height=400,scrollbars');}\n";
 	$script .= "}\n//-->\n</SCRIPT>";
 
-	funcprint($script,'スレッド掲示板1_PHP版　初期設定',$print);
+	funcprint($script,'TBPD_何でも共有掲示板　初期設定',$print);
 }
 
 ##################################################################################
